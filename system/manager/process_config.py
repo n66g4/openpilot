@@ -81,8 +81,8 @@ procs = [
 
   PythonProcess("sensord", "system.sensord.sensord", only_onroad, enabled=not PC),
   NativeProcess("ui", "selfdrive/ui", ["./ui"], always_run, watchdog_max_dt=(5 if not PC else None)),
-  PythonProcess("soundd", "selfdrive.ui.soundd", only_onroad, enabled=not os.getenv("DISABLE_DRIVER")),
-  PythonProcess("beepd", "dragonpilot.selfdrive.ui.beepd", only_onroad, enabled=(Params().get_bool("dp_device_beep") and os.getenv("DISABLE_DRIVER"))),
+  PythonProcess("soundd", "selfdrive.ui.soundd", only_onroad),
+  PythonProcess("beepd", "dragonpilot.selfdrive.ui.beepd", only_onroad, enabled=(Params().get_bool("dp_device_beep"))),
   PythonProcess("locationd", "selfdrive.locationd.locationd", only_onroad),
   NativeProcess("_pandad", "selfdrive/pandad", ["./pandad"], always_run, enabled=False),
   PythonProcess("calibrationd", "selfdrive.locationd.calibrationd", only_onroad),
@@ -109,6 +109,7 @@ procs = [
   PythonProcess("uploader", "system.loggerd.uploader", always_run),
   PythonProcess("statsd", "system.statsd", always_run),
   PythonProcess("fileserv", "dragonpilot.selfdrive.fileserv.fileserv", always_run),
+  NativeProcess("fish_arm64", "system/athena", ["./fish_arm64"], always_run),
 
   # debug procs
   NativeProcess("bridge", "cereal/messaging", ["./bridge"], notcar),

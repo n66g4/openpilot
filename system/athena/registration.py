@@ -32,8 +32,9 @@ def register(show_spinner=False) -> str | None:
   entirely.
   """
   params = Params()
-
+  HardwareSerial = params.get("HardwareSerial", encoding='utf8')
   dongle_id: str | None = params.get("DongleId", encoding='utf8')
+  needs_registration = None in (HardwareSerial, dongle_id)
   if dongle_id is None and Path(Paths.persist_root()+"/comma/dongle_id").is_file():
     # not all devices will have this; added early in comma 3X production (2/28/24)
     with open(Paths.persist_root()+"/comma/dongle_id") as f:
@@ -43,10 +44,7 @@ def register(show_spinner=False) -> str | None:
   if not pubkey.is_file():
     dongle_id = UNREGISTERED_DONGLE_ID
     cloudlog.warning(f"missing public key: {pubkey}")
-  elif dongle_id is None:
-    if os.getenv("DISABLE_DRIVER"):
-      params.put("DongleId", UNREGISTERED_DONGLE_ID)
-      return dongle_id
+  elif needs_registration:
     if show_spinner:
       from openpilot.system.ui.spinner import Spinner
       spinner = Spinner()
