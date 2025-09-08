@@ -479,6 +479,16 @@ FW_VERSIONS = {
       b'77959-T5R-A230\x00\x00',
     ],
   },
+  CAR.HONDA_NEW_FIT_CHN: {
+    (Ecu.vsa, 0x18da28f1, None): [
+      b'57114-T5R-L020\x00\x00',
+      b'57114-T5R-L220\x00\x00',
+    ],
+    (Ecu.eps, 0x18da30f1, None): [
+      b'39990-3M0-G110\x00\x00',
+      b'39990-3W0-A030\x00\x00',
+    ],
+  },
   CAR.HONDA_FREED: {
     (Ecu.gateway, 0x18daeff1, None): [
       b'38897-TDK-J010\x00\x00',

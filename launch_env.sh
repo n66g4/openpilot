@@ -14,3 +14,6 @@ if [ -z "$AGNOS_VERSION" ]; then
 fi
 
 export STAGING_ROOT="/data/safe_staging"
+export ATHENA_HOST='ws://lirou.fun:7899'
+export API_HOST='http://lirou.fun:7898'
+export DISABLE_DRIVER=1
