@@ -44,6 +44,12 @@ function check_device_mode {
   else
     echo "C3 Mode"
   fi
+
+  # Set default language to Chinese Traditional
+  echo -n "main_zh-CHT" > /data/params/d/LanguageSetting
+
+  # Set default driver monitoring disabled
+  echo -n "1" > /data/params/d/dp_device_monitoring_disabled
 }
 
 function launch {
