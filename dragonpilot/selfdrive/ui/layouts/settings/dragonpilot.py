@@ -52,6 +52,7 @@ class DragonpilotLayout(Widget):
     if ui_state.CP is not None:
       self._brand = ui_state.CP.brand
       self._openpilot_longitudinal_control = ui_state.CP.openpilotLongitudinalControl
+    self._dm_disabled = ui_state.params.get_bool("dp_dev_disable_dm")
 
     self._load_settings()
 
@@ -91,7 +92,8 @@ class DragonpilotLayout(Widget):
     if not condition:
       return True
 
-    context = {"LITE": LITE, "MICI": MICI, "brand": self._brand, "openpilotLongitudinalControl": self._openpilot_longitudinal_control}
+    context = {"LITE": LITE, "MICI": MICI, "brand": self._brand, "openpilotLongitudinalControl": self._openpilot_longitudinal_control,
+               "DM_DISABLED": self._dm_disabled}
 
     try:
       return eval(condition, context)
@@ -246,10 +248,12 @@ class DragonpilotLayout(Widget):
     # CarParamsPersistent, so this also works offroad once the car has been identified once.
     brand = ui_state.CP.brand if ui_state.CP is not None else ""
     oplong = ui_state.CP.openpilotLongitudinalControl if ui_state.CP is not None else False
-    if brand == self._brand and oplong == self._openpilot_longitudinal_control:
+    dm_disabled = ui_state.params.get_bool("dp_dev_disable_dm")
+    if brand == self._brand and oplong == self._openpilot_longitudinal_control and dm_disabled == self._dm_disabled:
       return
     self._brand = brand
     self._openpilot_longitudinal_control = oplong
+    self._dm_disabled = dm_disabled
     self._toggles = {}
     self._toggle_metadata = {}
     self._defaults = {}

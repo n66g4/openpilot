@@ -2,9 +2,9 @@ settings:
   - key: dp_dev_is_rhd
     type: toggle_item
     title: "Enable Right-Hand Drive Mode"
-    description: "Allow openpilot to obey right-hand traffic conventions on right driver seat."
+    description: "Allow openpilot to obey right-hand traffic conventions on right driver seat. Needed when driver monitoring is unavailable to auto-detect this."
     category: "Device"
-    condition: "LITE"
+    condition: "LITE or DM_DISABLED"
     flags: PERSISTENT
     param_type: BOOL
     default: "0"

@@ -227,6 +227,7 @@ def main(demo=False):
   DH = DesireHelper(dp_lat_lca_speed=dp_lat_lca_speed, dp_lat_lca_auto_sec=dp_lat_lca_auto_sec)
 
   dp_dev_is_rhd = params.get_bool("dp_dev_is_rhd")
+  DM_DISABLED = LITE or params.get_bool("dp_dev_disable_dm")
   RED = RoadEdgeDetector(params.get_bool("dp_lat_road_edge_detection"))
 
   dp_lat_offset_cm = int(params.get("dp_lat_offset_cm") or 0)
@@ -266,7 +267,7 @@ def main(demo=False):
 
     sm.update(0)
     desire = DH.desire
-    is_rhd = dp_dev_is_rhd if LITE else sm["driverMonitoringState"].isRHD
+    is_rhd = dp_dev_is_rhd if DM_DISABLED else sm["driverMonitoringState"].isRHD
     frame_id = sm["roadCameraState"].frameId
     v_ego = max(sm["carState"].vEgo, 0.)
     lat_delay = sm["liveDelay"].lateralDelay + LAT_SMOOTH_SECONDS
