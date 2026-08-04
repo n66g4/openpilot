@@ -83,6 +83,8 @@ class SelfdriveD:
     ignore = self.sensor_packets + self.gps_packets + ['alertDebug', 'lateralManeuverPlan'] + ['modelExt']
     if SIMULATION:
       ignore += ['driverMonitoringState', 'driverCameraState', 'managerState']
+    elif self.params.get_bool("dp_dev_disable_dm"):
+      ignore += ['driverMonitoringState', 'driverCameraState']
     if REPLAY:
       # no vipc in replay will make them ignored anyways
       ignore += ['roadCameraState', 'wideRoadCameraState']

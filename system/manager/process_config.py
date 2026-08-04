@@ -58,6 +58,9 @@ def qcomgps(started: bool, params: Params, CP: car.CarParams) -> bool:
 def beep(started: bool, params: Params, CP: car.CarParams) -> bool:
   return started and params.get_bool("dp_dev_beep")
 
+def driver_monitoring(started: bool, params: Params, CP: car.CarParams) -> bool:
+  return driverview(started, params, CP) and not params.get_bool("dp_dev_disable_dm")
+
 def always_run(started: bool, params: Params, CP: car.CarParams) -> bool:
   return True
 
@@ -95,7 +98,7 @@ procs = [
   PythonProcess("timed", "system.timed", always_run, enabled=not PC),
 
   PythonProcess("modeld", "selfdrive.modeld.modeld", only_onroad),
-  PythonProcess("dmonitoringmodeld", "selfdrive.modeld.dmonitoringmodeld", driverview, enabled=(WEBCAM or not PC) and not LITE),
+  PythonProcess("dmonitoringmodeld", "selfdrive.modeld.dmonitoringmodeld", driver_monitoring, enabled=(WEBCAM or not PC) and not LITE),
 
   PythonProcess("sensord", "system.sensord.sensord", only_onroad, enabled=not PC),
   PythonProcess("ui", "selfdrive.ui.ui", always_run, restart_if_crash=True),
@@ -110,7 +113,7 @@ procs = [
   PythonProcess("selfdrived", "selfdrive.selfdrived.selfdrived", only_onroad),
   PythonProcess("card", "selfdrive.car.card", only_onroad),
   PythonProcess("deleter", "system.loggerd.deleter", always_run),
-  PythonProcess("dmonitoringd", "selfdrive.monitoring.dmonitoringd", driverview, enabled=(WEBCAM or not PC) and not LITE),
+  PythonProcess("dmonitoringd", "selfdrive.monitoring.dmonitoringd", driver_monitoring, enabled=(WEBCAM or not PC) and not LITE),
   PythonProcess("qcomgpsd", "system.qcomgpsd.qcomgpsd", qcomgps, enabled=TICI),
   PythonProcess("pandad", "selfdrive.pandad.pandad" if not TICI_DOS else "selfdrive.pandad_tici.pandad", always_run),
   PythonProcess("paramsd", "selfdrive.locationd.paramsd", only_onroad),
