@@ -326,10 +326,11 @@ class DragonpilotLayout(Widget):
     self._scroller = Scroller(list(self._toggles.values()), line_separator=True, spacing=0)
 
   def _on_disable_dm_toggle(self, val: bool):
-    ui_state.params.put_bool("dp_dev_disable_dm", val)
-    ui_state.params.put_bool("OnroadCycleRequested", True)
+    ui_state.params.put_bool("dp_dev_disable_dm", val, block=True)
+    ui_state.params.put_bool("OnroadCycleRequested", True, block=True)
     self._disable_dm = val
     self._rebuild_settings_panel()
+    self._scroller.show_event()
 
   def _reset_dp_conf(self):
     def reset_dp_conf(result: int):
