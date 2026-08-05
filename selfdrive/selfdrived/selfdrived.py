@@ -63,6 +63,7 @@ class SelfdriveD:
 
     # dp - ALKA: check if ALKA is enabled
     self.alka = bool(self.CP.alternativeExperience & ALTERNATIVE_EXPERIENCE.ALKA)
+    self.driver_monitoring_disabled = SIMULATION or self.params.get_bool("dp_dev_disable_dm")
 
     self.pose_calibrator = PoseCalibrator()
     self.calibrated_pose: Pose | None = None
@@ -130,7 +131,6 @@ class SelfdriveD:
     self.recalibrating_seen = False
     self.dm_lockout_set = False
     self.dm_uncertain_alerted = False
-    self.driver_monitoring_disabled = SIMULATION or self.params.get_bool("dp_dev_disable_dm")
     self.state_machine = StateMachine(self.alka)
     self.rk = Ratekeeper(100, print_delay_threshold=None)
 
