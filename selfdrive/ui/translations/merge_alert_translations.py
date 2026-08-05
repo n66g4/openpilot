@@ -3,6 +3,7 @@
 
 import os
 import re
+from pathlib import Path
 
 BASEDIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 PO_PATH = os.path.join(BASEDIR, "selfdrive/ui/translations/app_zh-CHS.po")
@@ -233,14 +234,20 @@ def _upsert_entry(content: str, msgid: str, msgstr: str) -> tuple[str, bool, boo
   quoted_str = _po_quote(msgstr)
   block_re = rf'(msgid {re.escape(quoted_id)}\nmsgstr )("(?:\\.|[^"\\])*")'
   match = re.search(block_re, content)
-  if match:
-    if match.group(2) == quoted_str:
-      return content, False, False
-    content = re.sub(block_re, rf'\1{quoted_str}', content, count=1)
-    return content, False, True
+    if match:
+      if match.group(2) == quoted_str:
+        return content, False, False
+      content = re.sub(block_re, lambda m: m.group(1) + quoted_str, content, count=1)
+      return content, False, True
 
   append = f"#: {_source_ref(msgid)}\nmsgid {quoted_id}\nmsgstr {quoted_str}"
   return content.rstrip() + "\n\n" + append + "\n", True, False
+
+
+def _validate_po(path: str) -> None:
+  for i, line in enumerate(Path(path).read_text(encoding='utf-8').splitlines(), 1):
+    if line.startswith('msgstr "') and not line.endswith('"'):
+      raise ValueError(f"invalid msgstr at line {i}: {line!r}")
 
 
 def merge():
@@ -256,6 +263,9 @@ def merge():
 
   with open(PO_PATH, 'w', encoding='utf-8') as f:
     f.write(content)
+
+  # Verify the written file parses cleanly
+  _validate_po(PO_PATH)
 
   print(f"added {added}, updated {updated} entries in {PO_PATH}")
 

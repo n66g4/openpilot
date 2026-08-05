@@ -1071,8 +1071,7 @@ msgstr "倒挡"
 
 #: openpilot/selfdrive/selfdrived/events.py
 msgid "Reverse\nGear"
-msgstr "倒
-挡"
+msgstr "倒\n挡"
 
 #: openpilot/selfdrive/selfdrived/events.py
 msgid "Adaptive Cruise Disabled"

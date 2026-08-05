@@ -170,8 +170,8 @@ class Multilang:
       self._translations, self._plurals = load_translations(po_path)
       self._plural_selector = PLURAL_SELECTORS.get(self._language, lambda n: 0)
       cloudlog.debug(f"Loaded translations for language: {self._language}")
-    except FileNotFoundError:
-      cloudlog.error(f"No translation file found for language: {self._language}, using default.")
+    except (FileNotFoundError, ValueError) as e:
+      cloudlog.error(f"Failed to load translations for language: {self._language}: {e}")
       self._translations = {}
       self._plurals = {}
 
