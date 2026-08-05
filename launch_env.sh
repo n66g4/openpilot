@@ -20,3 +20,8 @@ if [ -z "$AGNOS_VERSION" ]; then
 fi
 
 export STAGING_ROOT="/data/safe_staging"
+
+# Self-hosted openpilot-server (written by DP panel or scripts/install_openpilot_server_env.sh)
+if [ -f /data/openpilot_server_env.sh ]; then
+  source /data/openpilot_server_env.sh
+fi

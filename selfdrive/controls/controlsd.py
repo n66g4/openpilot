@@ -62,6 +62,7 @@ class Controls:
     # dp - ALKA: cache enabled state (CP doesn't change after init)
     self.alka_enabled = bool(self.CP.alternativeExperience & ALTERNATIVE_EXPERIENCE.ALKA)
     self.alka_active = False
+    self.driver_monitoring_disabled = self.params.get_bool("dp_dev_disable_dm")
 
   def update(self):
     self.sm.update(15)
@@ -206,8 +207,9 @@ class Controls:
     cs.upAccelCmd = float(self.LoC.pid.p)
     cs.uiAccelCmd = float(self.LoC.pid.i)
     cs.ufAccelCmd = float(self.LoC.pid.f)
-    cs.forceDecel = bool((self.sm['driverMonitoringState'].alertLevel == log.DriverMonitoringState.AlertLevel.three) or
-                         (self.sm['selfdriveState'].state == State.softDisabling))
+    dm_force_decel = (not self.driver_monitoring_disabled and
+                      self.sm['driverMonitoringState'].alertLevel == log.DriverMonitoringState.AlertLevel.three)
+    cs.forceDecel = bool(dm_force_decel or (self.sm['selfdriveState'].state == State.softDisabling))
 
     lat_tuning = self.CP.lateralTuning.which()
     if self.CP.steerControlType == car.CarParams.SteerControlType.angle:

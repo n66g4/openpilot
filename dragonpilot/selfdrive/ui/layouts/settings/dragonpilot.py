@@ -24,6 +24,9 @@ from dragonpilot.system.ui.lib.multilang import tr
 from openpilot.system.ui.widgets.list_view import toggle_item, simple_item, button_item, spin_button_item, double_spin_button_item, text_spin_button_item
 from openpilot.system.ui.lib.application import gui_app
 from openpilot.system.ui.widgets.confirm_dialog import ConfirmDialog
+from openpilot.system.ui.widgets.keyboard import Keyboard
+from openpilot.system.athena.server_env import apply_from_params, clear_dongle_id_for_reregister, get_hosts
+from openpilot.system.ui.widgets.confirm_dialog import alert_dialog
 from openpilot.system.hardware import HARDWARE
 from dragonpilot.settings import SETTINGS, extract_depends_on_refs
 
@@ -36,6 +39,7 @@ class DragonpilotLayout(Widget):
 
     self._scroller: Scroller | None = None
     self._brand = ""
+    self._disable_dm = False
 
     self._toggles = {}
     self._toggle_metadata = {}
@@ -46,12 +50,15 @@ class DragonpilotLayout(Widget):
       "spin_button_item": spin_button_item,
       "double_spin_button_item": double_spin_button_item,
       "text_spin_button_item": text_spin_button_item,
+      "string_item": self._string_item,
+      "text_input_item": self._string_item,
     }
 
     self._openpilot_longitudinal_control = False
     if ui_state.CP is not None:
       self._brand = ui_state.CP.brand
       self._openpilot_longitudinal_control = ui_state.CP.openpilotLongitudinalControl
+    self._disable_dm = ui_state.params.get_bool("dp_dev_disable_dm")
 
     self._load_settings()
 
@@ -73,7 +80,8 @@ class DragonpilotLayout(Widget):
         continue
 
       title_key = f"title_{i}"
-      self._toggles[title_key] = simple_item(title=f"### {section['title']} ###")
+      section_title = section['title']
+      self._toggles[title_key] = simple_item(title=lambda t=section_title: f"### {tr(t)} ###")
       count_after_title = len(self._toggles)
 
       for setting in section.get("settings", []):
@@ -91,7 +99,13 @@ class DragonpilotLayout(Widget):
     if not condition:
       return True
 
-    context = {"LITE": LITE, "MICI": MICI, "brand": self._brand, "openpilotLongitudinalControl": self._openpilot_longitudinal_control}
+    context = {
+      "LITE": LITE,
+      "MICI": MICI,
+      "brand": self._brand,
+      "openpilotLongitudinalControl": self._openpilot_longitudinal_control,
+      "dp_dev_disable_dm": ui_state.params.get_bool("dp_dev_disable_dm"),
+    }
 
     try:
       return eval(condition, context)
@@ -147,6 +161,63 @@ class DragonpilotLayout(Widget):
     except Exception:
       return True
 
+  def _get_string_param(self, param_name: str, default: str) -> str:
+    raw_val = ui_state.params.get(param_name)
+    val = raw_val.decode() if isinstance(raw_val, bytes) else raw_val
+    return val or default
+
+  def _format_host_button(self, param_name: str, default: str) -> str:
+    val = self._get_string_param(param_name, default)
+    if len(val) > 24:
+      return val[:21] + "..."
+    return val
+
+  def _string_item(self, title, description=None, callback=None, enabled=True, **kwargs):
+    param_name = kwargs.get("param_name") or kwargs.get("key")
+    default = str(kwargs.get("default", ""))
+
+    def edit_callback(p=param_name, d=default, t=title):
+      self._edit_string_param(p, t() if callable(t) else t, d, bool(kwargs.get("reboot_on_change")))
+
+    def button_text(p=param_name, d=default):
+      return self._format_host_button(p, d)
+
+    return button_item(
+      title=title,
+      description=description,
+      button_text=button_text,
+      callback=edit_callback,
+      enabled=enabled,
+    )
+
+  def _edit_string_param(self, param_name: str, title: str, default: str, reboot: bool) -> None:
+    keyboard = Keyboard(min_text_size=1, max_text_size=200)
+
+    def on_submit(result: DialogResult):
+      if result != DialogResult.CONFIRM:
+        return
+      text = keyboard.text.strip()
+      if not text:
+        return
+      old_hosts = get_hosts(ui_state.params)
+      ui_state.params.put(param_name, text)
+      new_hosts = get_hosts(ui_state.params)
+      hosts_changed = old_hosts != new_hosts
+      if hosts_changed:
+        clear_dongle_id_for_reregister(ui_state.params)
+      apply_from_params(ui_state.params)
+      widget = self._toggles.get(param_name)
+      if widget is not None and hasattr(widget.action_item, "set_text"):
+        widget.action_item.set_text(lambda p=param_name, d=default: self._format_host_button(p, d))
+      if hosts_changed and reboot:
+        ui_state.params.put_bool("DoReboot", True)
+        gui_app.push_widget(alert_dialog(tr("Server address changed. Dongle ID cleared. Rebooting to re-register.")))
+
+    keyboard.set_text(self._get_string_param(param_name, default))
+    keyboard.set_title(title, tr("Enter URL"))
+    keyboard.set_callback(on_submit)
+    gui_app.push_widget(keyboard)
+
   def _create_item(self, setting):
     key = setting["key"]
     item_type = setting["type"]
@@ -160,6 +231,22 @@ class DragonpilotLayout(Widget):
       args["description"] = setting["description"]
 
     param_name = setting.get("param_name") or key
+
+    if item_type == "string_item" or item_type == "text_input_item":
+      for prop in ["default", "reboot_on_change"]:
+        if prop in setting:
+          args[prop] = setting[prop]
+      args["key"] = key
+      args["param_name"] = param_name
+      widget = factory(**args)
+      self._toggles[key] = widget
+      self._toggle_metadata[key] = {
+        "widget": widget,
+        "param_name": param_name,
+        "item_type": item_type,
+        "default": setting.get("default"),
+      }
+      return
 
     # Handle initial values
     if item_type == "toggle_item":
@@ -229,6 +316,21 @@ class DragonpilotLayout(Widget):
         "default": setting.get("default")
       }
 
+  def _rebuild_settings_panel(self):
+    self._toggles = {}
+    self._toggle_metadata = {}
+    self._defaults = {}
+    self._reverse_deps = {}
+    self._load_settings()
+    self._toggles['btn_reset_dp_conf'] = self._reset_dp_conf_btn
+    self._scroller = Scroller(list(self._toggles.values()), line_separator=True, spacing=0)
+
+  def _on_disable_dm_toggle(self, val: bool):
+    ui_state.params.put_bool("dp_dev_disable_dm", val)
+    ui_state.params.put_bool("OnroadCycleRequested", True)
+    self._disable_dm = val
+    self._rebuild_settings_panel()
+
   def _reset_dp_conf(self):
     def reset_dp_conf(result: int):
       if result != DialogResult.CONFIRM:
@@ -246,17 +348,13 @@ class DragonpilotLayout(Widget):
     # CarParamsPersistent, so this also works offroad once the car has been identified once.
     brand = ui_state.CP.brand if ui_state.CP is not None else ""
     oplong = ui_state.CP.openpilotLongitudinalControl if ui_state.CP is not None else False
-    if brand == self._brand and oplong == self._openpilot_longitudinal_control:
+    disable_dm = ui_state.params.get_bool("dp_dev_disable_dm")
+    if brand == self._brand and oplong == self._openpilot_longitudinal_control and disable_dm == self._disable_dm:
       return
     self._brand = brand
     self._openpilot_longitudinal_control = oplong
-    self._toggles = {}
-    self._toggle_metadata = {}
-    self._defaults = {}
-    self._reverse_deps = {}
-    self._load_settings()
-    self._toggles['btn_reset_dp_conf'] = self._reset_dp_conf_btn
-    self._scroller = Scroller(list(self._toggles.values()), line_separator=True, spacing=0)
+    self._disable_dm = disable_dm
+    self._rebuild_settings_panel()
 
   def show_event(self):
     self._refresh_visibility()
@@ -275,6 +373,9 @@ class DragonpilotLayout(Widget):
 
       if item_type == "toggle_item":
         widget.action_item.set_state(ui_state.params.get_bool(param_name))
+      elif item_type in ("string_item", "text_input_item"):
+        if hasattr(widget.action_item, "set_text"):
+          widget.action_item.set_text(lambda p=param_name, d=default: self._format_host_button(p, str(d or "")))
       else:  # Spinners
         raw_val = ui_state.params.get(param_name)
         val_str = None

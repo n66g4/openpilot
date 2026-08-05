@@ -815,7 +815,7 @@ def main(exit_event: threading.Event | None = None):
   dongle_id = params.get("DongleId")
   UploadQueueCache.initialize(upload_queue)
 
-  ws_uri = ATHENA_HOST + "/ws/v2/" + dongle_id
+  ws_uri = os.getenv('ATHENA_HOST', ATHENA_HOST) + "/ws/v2/" + dongle_id
   api = Api(dongle_id)
 
   conn_start = None

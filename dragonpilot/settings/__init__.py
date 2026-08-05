@@ -39,9 +39,9 @@ import sys
 from pathlib import Path
 
 try:
-  from dragonpilot.system.ui.lib.multilang import tr  # noqa: F401  (re-export for feature files)
+  from dragonpilot.system.ui.lib.multilang import tr, tr_noop  # noqa: F401  (re-export for feature files)
 except ImportError:
-  from openpilot.system.ui.lib.multilang import tr  # noqa: F401
+  from openpilot.system.ui.lib.multilang import tr, tr_noop  # noqa: F401
 
 SECTION_ORDER = [
   "Toyota / Lexus",
@@ -57,6 +57,21 @@ SECTION_ORDER = [
   "Openpilot",
   "Developer",
 ]
+
+# Keep section title msgids extractable for dragonpilot_*.po.
+_SECTION_TITLE_MSGIDS = (
+  tr_noop("Toyota / Lexus"),
+  tr_noop("Honda"),
+  tr_noop("HKG"),
+  tr_noop("VAG"),
+  tr_noop("Mazda"),
+  tr_noop("Lateral"),
+  tr_noop("Longitudinal"),
+  tr_noop("UI"),
+  tr_noop("Device"),
+  tr_noop("Openpilot"),
+  tr_noop("Developer"),
+)
 
 # Brand-gated sections: the whole header + its items are hidden when the
 # current car's brand doesn't match. Generic sections (Lateral/UI/...) are
@@ -74,7 +89,7 @@ _KNOWN_ITEM_KEYS = _UI_REQUIRED_KEYS | {
   # UI-side optional fields
   "description", "default", "min_val", "max_val", "step", "suffix",
   "special_value_text", "options", "brands", "condition",
-  "depends_on", "param_name", "callback",
+  "depends_on", "param_name", "callback", "reboot_on_change",
   # Dashy-only fields (no factory on the device dp panel; web UI consumes them).
   # text_display_item: read-only render of a param's value.
   # text_input_item: text field that POSTs typed value to the named action endpoint.

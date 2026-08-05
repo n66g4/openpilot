@@ -52,7 +52,7 @@ msgstr "根据驾驶情境自动在 ACC 和混合模式间切换。"
 #: dragonpilot/settings/openpilot.toggles.py:89
 #, python-format
 msgid "Aggressive"
-msgstr ""
+msgstr "激进"
 
 #: dragonpilot/settings/min-feat.ui.lead-stats.py:10
 #, python-format
@@ -68,7 +68,7 @@ msgstr "允许 openpilot 在右驾车辆上遵循右侧通行规则。"
 #: dragonpilot/settings/openpilot.toggles.py:50
 #, python-format
 msgid "Always-On Driver Monitoring"
-msgstr ""
+msgstr "始终开启驾驶员监测"
 
 #: dragonpilot/settings/min-feat.lat.alka-v2.py:8
 #, python-format
@@ -110,7 +110,7 @@ msgid ""
 "Block lane change assist when the system detects the road edge.<br>NOTE: "
 "This will show 'Car Detected in Blindspot' warning."
 msgstr ""
-"当系统侦测到道路边缘时阻止变换车道辅助。<br>注意：这将显示「侦测到盲点车辆」"
+"当系统侦测到道路边缘时阻止变换车道辅助。<br>注意：这将显示「盲区监测到车辆」"
 "警告。"
 
 #: dragonpilot/settings/min-feat.dev.opview.py:9
@@ -123,7 +123,7 @@ msgstr "将遥测数据广播至 opview 应用程序 (Android 适用)。"
 #: dragonpilot/settings/openpilot.developer.py:76
 #, python-format
 msgid "Clear SSH Keys"
-msgstr ""
+msgstr "清除 SSH 密钥"
 
 #: dragonpilot/settings/min-feat.dev.delay-loggerd.py:8
 #, python-format
@@ -137,7 +137,7 @@ msgid ""
 "on-road.<br>This prevents the initial moments of a drive from being "
 "recorded, protecting location privacy at the start of a trip."
 msgstr ""
-"当设备上路时延迟启动记录程序及相关进程。<br>这可防止行程开始时的位置被记录，"
+"当设备进入行驶模式时延迟启动记录程序及相关进程。<br>这可防止行程开始时的位置被记录，"
 "保护隐私。"
 
 #: dragonpilot/settings/min-feat.dev.disable-connect.py:8
@@ -155,17 +155,17 @@ msgstr "如果您不希望上传数据或被服务追踪，请停用 Comma Conne
 #: dragonpilot/settings/openpilot.toggles.py:74
 #, python-format
 msgid "Disable Logging"
-msgstr ""
+msgstr "禁用日志记录"
 
 #: dragonpilot/settings/openpilot.toggles.py:80
 #, python-format
 msgid "Disable Updates"
-msgstr ""
+msgstr "禁用更新"
 
 #: dragonpilot/settings/openpilot.toggles.py:38
 #, python-format
 msgid "Disengage on Accelerator Pedal"
-msgstr ""
+msgstr "踩油门退出"
 
 #: dragonpilot/settings/min-feat.ui.lead-stats.py:8
 #, python-format
@@ -195,12 +195,12 @@ msgstr "车门自动锁定/解锁"
 #: dragonpilot/settings/openpilot.toggles.py:87
 #, python-format
 msgid "Driving Personality"
-msgstr ""
+msgstr "驾驶风格"
 
 #: dragonpilot/settings/openpilot.developer.py:29
 #, python-format
 msgid "Enable ADB"
-msgstr ""
+msgstr "启用 ADB"
 
 #: dragonpilot/settings/min-feat.lon.acm.py:8
 #, python-format
@@ -215,7 +215,7 @@ msgstr "启用蜂鸣器（警告）"
 #: dragonpilot/settings/openpilot.toggles.py:44
 #, python-format
 msgid "Enable Lane Departure Warnings"
-msgstr ""
+msgstr "启用车道偏离警告"
 
 #: dragonpilot/settings/min-feat.dev.o3-v2.py:8
 #, python-format
@@ -225,22 +225,22 @@ msgstr "启用右驾模式"
 #: dragonpilot/settings/openpilot.developer.py:35
 #, python-format
 msgid "Enable SSH"
-msgstr ""
+msgstr "启用 SSH"
 
 #: dragonpilot/settings/brand-vag-a0-sng.py:8
 #, python-format
 msgid "Enable Stop-and-Go on A0 Platform"
-msgstr ""
+msgstr "在 A0 平台启用 Stop-and-Go"
 
 #: dragonpilot/settings/brand-toyota-tss1-sng.py:8
 #, python-format
 msgid "Enable Stop-and-Go on TSS1"
-msgstr ""
+msgstr "在 TSS1 上启用 Stop-and-Go"
 
 #: dragonpilot/settings/min-feat.dev.dashy-v2.py:8
 #, python-format
 msgid "Enable dashy Visual"
-msgstr ""
+msgstr "启用 dashy 视觉"
 
 #: dragonpilot/settings/min-feat.lat.alka-v2.py:9
 #, python-format
@@ -254,7 +254,7 @@ msgstr ""
 #: dragonpilot/settings/openpilot.toggles.py:27
 #, python-format
 msgid "Enable openpilot"
-msgstr ""
+msgstr "启用 openpilot"
 
 #: dragonpilot/settings/brand.toyota.door-auto-lock-unlock.py:9
 #, python-format
@@ -271,7 +271,7 @@ msgstr "启用 opview"
 #: dragonpilot/settings/openpilot.toggles.py:33
 #, python-format
 msgid "Experimental Mode"
-msgstr ""
+msgstr "实验模式"
 
 #: dragonpilot/settings/min-feat.lat.lat-offset.py:9
 #, python-format
@@ -286,7 +286,7 @@ msgstr ""
 #: dragonpilot/settings/openpilot.developer.py:64
 #, python-format
 msgid "GitHub Username (SSH Keys)"
-msgstr ""
+msgstr "GitHub 用户名（SSH 密钥）"
 
 #: dragonpilot/settings/min-feat.ui.hide-hud.py:8
 #, python-format
@@ -296,7 +296,7 @@ msgstr "行驶超过此速度时隐藏 HUD："
 #: dragonpilot/settings/openpilot.developer.py:40
 #, python-format
 msgid "Joystick Debug Mode"
-msgstr ""
+msgstr "摇杆调试模式"
 
 #: dragonpilot/settings/min-feat.lat.lca.py:8
 #, python-format
@@ -306,7 +306,7 @@ msgstr "变换车道辅助启用速度："
 #: dragonpilot/settings/openpilot.developer.py:85
 #, python-format
 msgid "Last Errors"
-msgstr ""
+msgstr "最近错误"
 
 #: dragonpilot/settings/min-feat.ui.lead-stats.py:10
 #, python-format
@@ -318,19 +318,19 @@ msgstr "前车"
 msgid ""
 "Let the Honda Nidec ACC handle gas and brake instead of openpilot. Lateral "
 "control (steering) still runs through openpilot."
-msgstr ""
+msgstr "由本田 Nidec ACC 控制油门与刹车，横向（转向）仍由 openpilot 控制。"
 
 #: dragonpilot/settings/brand-toyota-stock-lon.py:9
 #, python-format
 msgid ""
 "Let the car's built-in ACC handle gas and brake instead of openpilot. "
 "Lateral control (steering) still runs through openpilot."
-msgstr ""
+msgstr "由原厂 ACC 控制油门与刹车，横向（转向）仍由 openpilot 控制。"
 
 #: dragonpilot/settings/openpilot.developer.py:45
 #, python-format
 msgid "Longitudinal Maneuver Mode"
-msgstr ""
+msgstr "纵向操作模式"
 
 #: dragonpilot/settings/min-feat.ui.display-mode.py:10
 #, python-format
@@ -396,17 +396,17 @@ msgstr "彩虹行驶路径（类似特斯拉）"
 #: dragonpilot/settings/openpilot.toggles.py:56
 #, python-format
 msgid "Record and Upload Driver Camera"
-msgstr ""
+msgstr "录制并上传驾驶员摄像头"
 
 #: dragonpilot/settings/openpilot.toggles.py:62
 #, python-format
 msgid "Record and Upload Microphone Audio"
-msgstr ""
+msgstr "录制并上传麦克风音频"
 
 #: dragonpilot/settings/openpilot.toggles.py:89
 #, python-format
 msgid "Relaxed"
-msgstr ""
+msgstr "放松"
 
 #: dragonpilot/selfdrive/ui/layouts/settings/dragonpilot.py:239
 #, python-format
@@ -428,7 +428,7 @@ msgstr "将 dragonpilot 设定重置为默认值并重新启动设备。"
 msgid ""
 "Restores stop-and-go behavior on Toyota Safety Sense 1.0 vehicles, allowing "
 "openpilot to resume from a full stop without driver intervention."
-msgstr ""
+msgstr "恢复丰田 TSS1.0 车辆的 Stop-and-Go，使 openpilot 可在完全停车后自动起步而无需驾驶员介入。"
 
 #: dragonpilot/settings/brand-vag-a0-sng.py:9
 #, python-format
@@ -436,7 +436,7 @@ msgid ""
 "Restores stop-and-go behavior on VAG A0 platform vehicles (Polo, Fabia, "
 "Ibiza, etc.), allowing openpilot to resume from a full stop without driver "
 "intervention."
-msgstr ""
+msgstr "恢复 VAG A0 平台（Polo、Fabia、Ibiza 等）的 Stop-and-Go，使 openpilot 可在完全停车后自动起步而无需驾驶员介入。"
 
 #: dragonpilot/settings/min-feat.lat.road-edge-detection.py:8
 #, python-format
@@ -446,7 +446,7 @@ msgstr "道路边缘侦测 (RED)"
 #: dragonpilot/settings/brand-vag-avoid-eps-lockout.py:9
 #, python-format
 msgid "Scale steering torque down at low speeds to avoid EPS lockout."
-msgstr ""
+msgstr "低速时降低转向扭矩，避免 EPS 锁止。"
 
 #: dragonpilot/settings/min-feat.lon.ext-radar.py:9
 #, python-format
@@ -458,7 +458,7 @@ msgstr "详情请参阅 https://github.com/eFiniLan/openpilot-ext-radar-addon。
 #: dragonpilot/settings/openpilot.toggles.py:89
 #, python-format
 msgid "Standard"
-msgstr ""
+msgstr "标准"
 
 #: dragonpilot/settings/min-feat.ui.display-mode.py:10
 #: dragonpilot/settings/min-feat.dev.alert-mode.py:10
@@ -487,7 +487,7 @@ msgstr ""
 #: dragonpilot/settings/openpilot.developer.py:71
 #, python-format
 msgid "Stored SSH Keys"
-msgstr ""
+msgstr "已存储的 SSH 密钥"
 
 #: dragonpilot/settings/min-feat.ui.hide-hud.py:9
 #, python-format
@@ -501,7 +501,7 @@ msgstr ""
 #: dragonpilot/settings/openpilot.developer.py:56
 #, python-format
 msgid "UI Debug Mode"
-msgstr ""
+msgstr "界面调试模式"
 
 #: dragonpilot/settings/min-feat.dev.o3-v2.py:20
 #, python-format
@@ -516,12 +516,12 @@ msgstr "使用外部雷达"
 #: dragonpilot/settings/openpilot.toggles.py:68
 #, python-format
 msgid "Use Metric System"
-msgstr ""
+msgstr "使用公制单位"
 
 #: dragonpilot/settings/brand-honda-nidec-stock-long.py:8
 #, python-format
 msgid "Use Stock Longitudinal (Nidec)"
-msgstr ""
+msgstr "使用原厂纵向控制 (Nidec)"
 
 #: dragonpilot/settings/brand-toyota-stock-lon.py:8
 #, python-format
@@ -548,7 +548,7 @@ msgstr "厘米"
 msgid ""
 "dashy - dragonpilot's all-in-one system hub.<br><br>Visit http://&lt;"
 "device_ip&gt;:5088 to access.<br><br>Enable this to use Tesla Visual/HUD."
-msgstr ""
+msgstr "dashy - dragonpilot 一体化系统中心。<br><br>访问 http://&lt;设备IP&gt;:5088。<br><br>启用以使用 Tesla 视觉/HUD。"
 
 #: dragonpilot/settings/min-feat.ui.hide-hud.py:14
 #, python-format
@@ -568,7 +568,7 @@ msgstr "mph"
 #: dragonpilot/settings/openpilot.developer.py:50
 #, python-format
 msgid "openpilot Longitudinal Control (Alpha)"
-msgstr ""
+msgstr "openpilot 纵向控制（Alpha）"
 
 #: dragonpilot/selfdrive/ui/mici/layouts/dashy_qrcode.py:18
 #, python-format
@@ -684,3 +684,73 @@ msgstr "秒"
 #, python-format
 #~ msgid "dashy HUD"
 #~ msgstr "dashy HUD"
+
+msgid "Fine-tune where the car drives within the lane. Positive values move the car left, negative values move right.<br>Recommended to start with small values (±5cm) and adjust based on preference."
+msgstr "微调车道内行驶位置。正值偏左，负值偏右。<br>建议从小数值（±5cm）开始按喜好调整。"
+
+msgid "Toyota / Lexus"
+msgstr "丰田 / 雷克萨斯"
+
+msgid "Honda"
+msgstr "本田"
+
+msgid "HKG"
+msgstr "现代起亚"
+
+msgid "VAG"
+msgstr "大众集团"
+
+msgid "Mazda"
+msgstr "马自达"
+
+msgid "Lateral"
+msgstr "横向"
+
+msgid "Longitudinal"
+msgstr "纵向"
+
+msgid "UI"
+msgstr "界面"
+
+msgid "Device"
+msgstr "设备"
+
+msgid "Openpilot"
+msgstr "Openpilot"
+
+msgid "Developer"
+msgstr "开发者"
+
+msgid "Disable Driver Monitoring"
+msgstr "关闭驾驶员监测"
+
+msgid "Completely disable driver monitoring. Changing this setting will restart openpilot if the car is powered on."
+msgstr "完全关闭驾驶员监测。若车辆已通电，更改此设置将重启 openpilot。"
+
+#: dragonpilot/settings/min-feat.dev.openpilot-server.py
+msgid "Athena Host"
+msgstr "Athena 主机"
+
+#: dragonpilot/settings/min-feat.dev.openpilot-server.py
+msgid "WebSocket URL for self-hosted openpilot-server."
+msgstr "自托管 openpilot-server 的 WebSocket 地址。"
+
+#: dragonpilot/settings/min-feat.dev.openpilot-server.py
+msgid "API Host"
+msgstr "API 主机"
+
+#: dragonpilot/settings/min-feat.dev.openpilot-server.py
+msgid "HTTP URL for self-hosted openpilot-server."
+msgstr "自托管 openpilot-server 的 HTTP 地址。"
+
+#: dragonpilot/selfdrive/ui/layouts/settings/dragonpilot.py
+msgid "Enter URL"
+msgstr "输入 URL"
+
+#: dragonpilot/selfdrive/ui/layouts/settings/dragonpilot.py
+msgid "Reboot required to apply server settings."
+msgstr "需要重启以应用服务器设置。"
+
+#: dragonpilot/selfdrive/ui/layouts/settings/dragonpilot.py
+msgid "Server address changed. Dongle ID cleared. Rebooting to re-register."
+msgstr "服务器地址已变更，Dongle ID 已清除，正在重启以重新注册。"

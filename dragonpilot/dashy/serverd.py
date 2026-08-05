@@ -49,7 +49,9 @@ from cereal import messaging
 from openpilot.common.params import Params
 from openpilot.system.hardware import PC, HARDWARE
 from openpilot.system.ui.lib.multilang import multilang as base_multilang
+from dragonpilot.system.ui.lib.multilang import tr as dp_tr
 from dragonpilot.settings import SETTINGS
+from openpilot.system.athena.server_env import apply_from_params, clear_dongle_id_for_reregister, get_hosts
 
 try:
     from openpilot.system.version import get_build_metadata as _get_build_metadata
@@ -133,6 +135,7 @@ class AppCache:
                 'openpilotLongitudinalControl': car_params['openpilot_longitudinal_control'],
                 'LITE': os.getenv("LITE") is not None,
                 'MICI': self._check_mici(),
+                'dp_dev_disable_dm': self.get_bool_safe("dp_dev_disable_dm"),
                 # Upstream-mirror items gate on these.
                 'DASHY': True,
                 'IS_RELEASE': self._is_release_channel(),
@@ -291,9 +294,14 @@ def _param_allowed(key):
 async def init_api(request):
     """Provide initial data to the client."""
     cache: AppCache = request.app['cache']
+    lang = cache.params.get("LanguageSetting")
+    if isinstance(lang, bytes):
+        lang = lang.decode()
+    lang = str(lang or "en").removeprefix("main_")
     return web.json_response({
         'dp_dev_dashy': cache.get_bool_safe("dp_dev_dashy", True),
         'isOffroad': cache.get_bool_safe("IsOffroad", False),
+        'language': lang,
     })
 
 
@@ -392,6 +400,7 @@ async def get_settings_config_api(request):
         if lang_str != base_multilang.language and lang_str in base_multilang.languages.values():
             base_multilang._language = lang_str
             base_multilang.setup()
+            cache._settings_cache = None
 
     context = cache.get_settings_context()
     settings_with_values = []
@@ -401,6 +410,7 @@ async def get_settings_config_api(request):
             continue
 
         section_copy = section.copy()
+        section_copy['title'] = dp_tr(section['title'])
         settings_list = []
 
         for setting in section.get('settings', []):
@@ -443,7 +453,7 @@ def _get_setting_value(params, setting):
         elif setting_type == 'double_spin_button_item':
             value = params.get(key)
             return float(value) if value is not None else float(default)
-        elif setting_type in ('text_input_item', 'text_display_item'):
+        elif setting_type in ('text_input_item', 'text_display_item', 'string_item'):
             value = params.get(key)
             if value is None:
                 return ''
@@ -461,7 +471,7 @@ def _get_setting_value(params, setting):
             return False
         elif setting_type == 'double_spin_button_item':
             return float(default)
-        elif setting_type in ('text_input_item', 'text_display_item'):
+        elif setting_type in ('text_input_item', 'text_display_item', 'string_item'):
             return ''
         elif setting_type == 'action_item':
             return None
@@ -492,7 +502,19 @@ async def save_param_api(request):
     if 'value' not in data:
         return web.json_response({'error': 'value is required in body'}, status=400)
 
+    old_hosts = None
+    if param_name in ('dp_athena_host', 'dp_api_host'):
+        old_hosts = get_hosts(params)
+
     _save_param(params, param_name, data['value'])
+
+    if param_name in ('dp_athena_host', 'dp_api_host'):
+        new_hosts = get_hosts(params)
+        if old_hosts != new_hosts:
+            clear_dongle_id_for_reregister(params)
+            apply_from_params(params)
+            params.put_bool('DoReboot', True)
+
     cache.invalidate()
     logger.info(f"Param saved: {param_name}={data['value']}")
 

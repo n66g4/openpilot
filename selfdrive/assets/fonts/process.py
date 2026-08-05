@@ -23,17 +23,23 @@ def _languages():
 
 
 def _dragonpilot_chars(code: str) -> set[str]:
-  """Characters used by dragonpilot's own translations (dragonpilot_{code}.mo).
+  """Characters used by dragonpilot's own translations.
 
   dp settings translate via a separate catalog from openpilot's app_{code}.po,
   so their glyphs must be baked too — otherwise translated dp settings render
-  as '?' (the catalog ships compiled, so we read the .mo, not a .po source)."""
+  as '?'. Prefer .po (runtime source of truth); fall back to .mo if present.
+  """
+  chars: set[str] = set()
+  po_path = TRANSLATIONS_DIR / f"dragonpilot_{code}.po"
+  if po_path.exists():
+    chars |= set(po_path.read_text(encoding="utf-8"))
+    return chars
+
   mo_path = TRANSLATIONS_DIR / f"dragonpilot_{code}.mo"
   if not mo_path.exists():
     return set()
   with mo_path.open("rb") as fh:
     catalog = gettext.GNUTranslations(fh)._catalog
-  chars: set[str] = set()
   for value in catalog.values():
     if isinstance(value, str):
       chars |= set(value)

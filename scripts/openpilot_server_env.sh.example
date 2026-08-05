@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Legacy manual config (optional). DP panel writes /data/openpilot_server_env.sh automatically.
+#   cp scripts/openpilot_server_env.sh.example /data/openpilot_server_env.sh
+#   chmod +x /data/openpilot_server_env.sh
+
+export ATHENA_HOST='ws://lirou.fun:7899'
+export API_HOST='http://lirou.fun:7898'
