@@ -214,6 +214,20 @@ UI_TRANSLATIONS = {
   "<br><br>Steering lag calibration is complete.": "<br><br>转向延迟标定完成。",
   "<br><br>Steering lag calibration is {}% complete.": "<br><br>转向延迟标定已完成 {}%。",
   "Waiting to start": "等待进入行驶模式",
+  "Disable Logging": "禁用日志记录",
+  "Disable Updates": "禁用更新",
+  "Disable logging service": "禁用日志记录服务",
+  "Disable update service": "禁用系统更新服务",
+  "Use the openpilot system for adaptive cruise control and lane keep driver assistance. Your attention is required at all times to use this feature.":
+    "使用 openpilot 的自适应巡航与车道保持辅助。使用此功能时您必须始终关注路况。",
+  "Standard is recommended. In aggressive mode, openpilot will follow lead cars closer and be more aggressive with the gas and brake. In relaxed mode openpilot will stay further away from lead cars. On supported cars, you can cycle through these personalities with your steering wheel distance button.":
+    "建议使用标准模式。激进模式下 openpilot 会更近跟车、加减速更积极；从容模式下会与前车保持更远距离。部分车型可通过方向盘距离键切换驾驶风格。",
+  "Receive alerts to steer back into the lane when your vehicle drifts over a detected lane line without a turn signal activated while driving over 31 mph (50 km/h).":
+    "车速超过 31 mph（50 km/h）且未打转向灯时，若车辆偏离检测到的车道线，将收到回到车道的预警。",
+  "An alpha version of openpilot longitudinal control can be tested, along with Experimental mode, on non-release branches.":
+    "在非正式发布分支上可测试 openpilot 纵向控制 Alpha 版及实验模式。",
+  "openpilot defaults to driving in chill mode. Experimental mode enables alpha-level features that aren't ready for chill mode. Experimental features are listed below:<br><h4>End-to-End Longitudinal Control</h4><br>Let the driving model control the gas and brakes. openpilot will drive as it thinks a human would, including stopping for red lights and stop signs. Since the driving model decides the speed to drive, the set speed will only act as an upper bound. This is an alpha quality feature; mistakes should be expected.<br><h4>New Driving Visualization</h4><br>The driving visualization will transition to the road-facing wide-angle camera at low speeds to better show some turns. The Experimental mode logo will also be shown in the top right corner.":
+    "openpilot 默认以安稳模式行驶。实验模式启用尚未纳入安稳模式的 Alpha 功能，如下：<br><h4>端到端纵向控制</h4><br>由规划模型控制油门与制动。openpilot 将按类似人类的方式驾驶，包括红灯与停车标志前停车。由于车速由模型决定，设定速度仅作为上限。此为 Alpha 功能，可能出现失误。<br><h4>新驾驶可视化</h4><br>低速时驾驶可视化将切换至前路广角摄像头，以便更好显示弯道。右上角也将显示实验模式标识。",
 }
 
 
@@ -234,11 +248,11 @@ def _upsert_entry(content: str, msgid: str, msgstr: str) -> tuple[str, bool, boo
   quoted_str = _po_quote(msgstr)
   block_re = rf'(msgid {re.escape(quoted_id)}\nmsgstr )("(?:\\.|[^"\\])*")'
   match = re.search(block_re, content)
-    if match:
-      if match.group(2) == quoted_str:
-        return content, False, False
-      content = re.sub(block_re, lambda m: m.group(1) + quoted_str, content, count=1)
-      return content, False, True
+  if match:
+    if match.group(2) == quoted_str:
+      return content, False, False
+    content = re.sub(block_re, lambda m: m.group(1) + quoted_str, content, count=1)
+    return content, False, True
 
   append = f"#: {_source_ref(msgid)}\nmsgid {quoted_id}\nmsgstr {quoted_str}"
   return content.rstrip() + "\n\n" + append + "\n", True, False
