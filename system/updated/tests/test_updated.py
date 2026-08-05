@@ -1,7 +1,7 @@
 import pytest
 
 from openpilot.common.params import Params
-from openpilot.system.updated.updated import Updater
+from openpilot.system.updated.updated import Updater, BASEDIR, FINALIZED, OVERLAY_MERGED
 
 
 @pytest.mark.parametrize(("device_type", "branch", "expected"), [
@@ -36,3 +36,31 @@ def test_target_branch_migration_from_param(mocker, device_type, branch, expecte
     assert Updater().target_branch == expected
   finally:
     params.remove("UpdaterTargetBranch")
+
+
+def test_restore_finalized_if_ready_restores_flag(mocker):
+  updater = Updater()
+  updater.branches["pre-build"] = "b" * 40
+  mocker.patch.object(updater, "target_branch", "pre-build")
+  mocker.patch.object(updater, "update_available", False)
+  mocker.patch.object(updater, "get_commit_hash", side_effect=lambda path: {
+    BASEDIR: "a" * 40,
+    OVERLAY_MERGED: "b" * 40,
+    FINALIZED: "b" * 40,
+  }[path])
+  mocker.patch.object(updater, "get_branch", return_value="pre-build")
+  mocker.patch("openpilot.system.updated.updated.os.path.isdir", return_value=True)
+  mock_flag = mocker.patch("openpilot.system.updated.updated.set_consistent_flag")
+
+  assert updater.restore_finalized_if_ready() is True
+  mock_flag.assert_called_once_with(True)
+
+
+def test_restore_finalized_if_ready_skips_when_overlay_behind(mocker):
+  updater = Updater()
+  updater.branches["pre-build"] = "c" * 40
+  mocker.patch.object(updater, "target_branch", "pre-build")
+  mocker.patch.object(updater, "update_available", True)
+  mocker.patch("openpilot.system.updated.updated.set_consistent_flag")
+
+  assert updater.restore_finalized_if_ready() is False

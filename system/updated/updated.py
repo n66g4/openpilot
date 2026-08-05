@@ -274,6 +274,36 @@ class Updater:
   def get_commit_hash(self, path: str = OVERLAY_MERGED) -> str:
     return run(["git", "rev-parse", "HEAD"], path).rstrip()
 
+  def restore_finalized_if_ready(self) -> bool:
+    """Restore install-ready state when overlay already matches remote but BASEDIR is behind."""
+    target_commit = self.branches.get(self.target_branch)
+    if not target_commit or self.update_available:
+      return False
+
+    try:
+      basedir_commit = self.get_commit_hash(BASEDIR)
+      overlay_commit = self.get_commit_hash(OVERLAY_MERGED)
+    except subprocess.CalledProcessError:
+      return False
+
+    if basedir_commit == target_commit or overlay_commit != target_commit:
+      return False
+
+    if os.path.isdir(FINALIZED):
+      try:
+        if (self.get_commit_hash(FINALIZED) == target_commit and
+            self.get_branch(FINALIZED) == self.target_branch):
+          cloudlog.info("restoring finalized update flag without re-copy")
+          set_consistent_flag(True)
+          return True
+      except subprocess.CalledProcessError:
+        pass
+
+    cloudlog.info("overlay matches remote but BASEDIR is behind, re-finalizing")
+    self.params.put("UpdaterState", "finalizing update...", block=True)
+    finalize_update()
+    return True
+
   def set_params(self, update_success: bool, failed_count: int, exception: str | None) -> None:
     self.params.put("UpdateFailedCount", failed_count, block=True)
     self.params.put("UpdaterTargetBranch", self.target_branch, block=True)
@@ -487,6 +517,7 @@ def main() -> None:
         # check for update
         params.put("UpdaterState", "checking...", block=True)
         updater.check_for_update()
+        updater.restore_finalized_if_ready()
 
         # download update
         last_fetch = params.get("UpdaterLastFetchTime")
