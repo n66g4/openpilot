@@ -17,6 +17,21 @@ def get_expected_signature() -> bytes:
   fn = os.path.join(FW_PATH, McuType.H7.config.app_fn)
   return Panda.get_signature_from_firmware(fn)
 
+def wait_for_internal_panda(timeout: float = 10.0, interval: float = 0.5) -> None:
+  # internal panda takes ~5.5s to boot its app after a reset; wait for it to leave
+  # bootstub so we don't mistake the transient boot window for a firmware issue
+  deadline = time.monotonic() + timeout
+  while time.monotonic() < deadline:
+    serials = Panda.list()
+    if len(serials) == 1:
+      try:
+        with Panda(serials[0]) as p:
+          if not p.bootstub:
+            return
+      except Exception:
+        pass
+    time.sleep(interval)
+
 def flash_panda(panda_serial: str):
   panda = Panda(panda_serial)
   fw_signature = get_expected_signature()
@@ -81,6 +96,7 @@ def main() -> None:
       cloudlog.event("pandad.flash_and_connect", count=count)
       if (count % 2) == 0:
         HARDWARE.reset_internal_panda()
+        wait_for_internal_panda()
       else:
         HARDWARE.recover_internal_panda()
       count += 1
