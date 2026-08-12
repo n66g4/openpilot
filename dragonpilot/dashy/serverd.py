@@ -502,18 +502,17 @@ async def save_param_api(request):
     if 'value' not in data:
         return web.json_response({'error': 'value is required in body'}, status=400)
 
-    old_hosts = None
-    if param_name in ('dp_athena_host', 'dp_api_host'):
-        old_hosts = get_hosts(params)
+    is_host = param_name in ('dp_athena_host', 'dp_api_host')
+    old_hosts = get_hosts(params) if is_host else None
 
-    _save_param(params, param_name, data['value'])
+    _save_param(params, param_name, data['value'], block=is_host)
 
-    if param_name in ('dp_athena_host', 'dp_api_host'):
+    if is_host:
         new_hosts = get_hosts(params)
         if old_hosts != new_hosts:
             clear_dongle_id_for_reregister(params)
             apply_from_params(params)
-            params.put_bool('DoReboot', True)
+            params.put_bool('DoReboot', True, block=True)
 
     cache.invalidate()
     logger.info(f"Param saved: {param_name}={data['value']}")
@@ -521,21 +520,21 @@ async def save_param_api(request):
     return web.json_response({'status': 'success', 'key': param_name, 'value': data['value']})
 
 
-def _save_param(params, key, value):
+def _save_param(params, key, value, block=False):
     """Save a single param value with proper type handling."""
     try:
         param_type = params.get_type(key)
 
         if param_type == 1:  # BOOL
-            params.put_bool(key, bool(value))
+            params.put_bool(key, bool(value), block=block)
         elif param_type == 2:  # INT
-            params.put(key, int(value))
+            params.put(key, int(value), block=block)
         elif param_type == 3:  # FLOAT
-            params.put(key, float(value))
+            params.put(key, float(value), block=block)
         elif isinstance(value, bool):
-            params.put_bool(key, value)
+            params.put_bool(key, value, block=block)
         else:
-            params.put(key, str(value) if not isinstance(value, str) else value)
+            params.put(key, str(value) if not isinstance(value, str) else value, block=block)
 
         logger.debug(f"Saved {key}={value} (type={param_type})")
     except Exception as e:

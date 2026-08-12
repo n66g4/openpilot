@@ -9,7 +9,7 @@ ITEMS = [
     "description": lambda: tr("WebSocket URL for self-hosted openpilot-server."),
     "flags": "PERSISTENT",
     "param_type": "STRING",
-    "default": "ws://lirou.fun:7899",
+    "default": "wss://op.lirou.fun:666",
     "reboot_on_change": True,
   },
   {
@@ -20,7 +20,7 @@ ITEMS = [
     "description": lambda: tr("HTTP URL for self-hosted openpilot-server."),
     "flags": "PERSISTENT",
     "param_type": "STRING",
-    "default": "http://lirou.fun:7898",
+    "default": "https://op.lirou.fun:666",
     "reboot_on_change": True,
   },
 ]

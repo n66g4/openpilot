@@ -25,7 +25,7 @@ from openpilot.system.ui.widgets.list_view import toggle_item, simple_item, butt
 from openpilot.system.ui.lib.application import gui_app
 from openpilot.system.ui.widgets.confirm_dialog import ConfirmDialog
 from openpilot.system.ui.widgets.keyboard import Keyboard
-from openpilot.system.athena.server_env import apply_from_params, clear_dongle_id_for_reregister, get_hosts
+from openpilot.system.athena.server_env import apply_from_params, clear_dongle_id_for_reregister
 from openpilot.system.ui.widgets.confirm_dialog import alert_dialog
 from openpilot.system.hardware import HARDWARE
 from dragonpilot.settings import SETTINGS, extract_depends_on_refs
@@ -199,18 +199,20 @@ class DragonpilotLayout(Widget):
       text = keyboard.text.strip()
       if not text:
         return
-      old_hosts = get_hosts(ui_state.params)
-      ui_state.params.put(param_name, text)
-      new_hosts = get_hosts(ui_state.params)
-      hosts_changed = old_hosts != new_hosts
-      if hosts_changed:
+      old_val = self._get_string_param(param_name, default)
+      if text == old_val:
+        return
+      # block=True so subsequent reads see the new value (non-blocking put races clear/reboot)
+      ui_state.params.put(param_name, text, block=True)
+      is_host = param_name in ("dp_athena_host", "dp_api_host")
+      if is_host:
         clear_dongle_id_for_reregister(ui_state.params)
-      apply_from_params(ui_state.params)
+        apply_from_params(ui_state.params)
       widget = self._toggles.get(param_name)
       if widget is not None and hasattr(widget.action_item, "set_text"):
         widget.action_item.set_text(lambda p=param_name, d=default: self._format_host_button(p, d))
-      if hosts_changed and reboot:
-        ui_state.params.put_bool("DoReboot", True)
+      if is_host and reboot:
+        ui_state.params.put_bool("DoReboot", True, block=True)
         gui_app.push_widget(alert_dialog(tr("Server address changed. Dongle ID cleared. Rebooting to re-register.")))
 
     keyboard.set_text(self._get_string_param(param_name, default))

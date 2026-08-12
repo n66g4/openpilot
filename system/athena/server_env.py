@@ -5,11 +5,9 @@ from openpilot.common.params import Params
 from openpilot.system.hardware.hw import Paths
 
 ENV_PATH = "/data/openpilot_server_env.sh"
-DEFAULT_ATHENA_HOST = "ws://lirou.fun:7899"
-DEFAULT_API_HOST = "http://lirou.fun:7898"
+DEFAULT_ATHENA_HOST = "wss://op.lirou.fun:666"
+DEFAULT_API_HOST = "https://op.lirou.fun:666"
 PERSIST_DONGLE_ID_PATH = Path(Paths.persist_root()) / "comma" / "dongle_id"
-DEFAULT_ATHENA_HOST = "ws://lirou.fun:7899"
-DEFAULT_API_HOST = "http://lirou.fun:7898"
 
 
 def _decode(val) -> str:
