@@ -1,0 +1,1566 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: zh-CHS\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid " Steering torque response calibration is complete."
+msgstr " 转向扭矩响应标定完成。"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid " Steering torque response calibration is {}% complete."
+msgstr " 转向扭矩响应标定已完成 {}%。"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid " Your device is pointed {:.1f}° {} and {:.1f}° {}."
+msgstr " 您的设备朝向 {:.1f}° {} 与 {:.1f}° {}。"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "--"
+msgstr "--"
+
+#: openpilot/selfdrive/ui/widgets/prime.py
+msgid "1 year of drive storage"
+msgstr "1 年行驶数据存储"
+
+#: openpilot/selfdrive/ui/widgets/prime.py
+msgid "24/7 LTE connectivity"
+msgstr "全天候 LTE 连接"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "2G"
+msgstr "2G"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "3G"
+msgstr "3G"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "5G"
+msgstr "5G"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "<br><br>Steering lag calibration is complete."
+msgstr "<br><br>转向延迟标定完成。"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "<br><br>Steering lag calibration is {}% complete."
+msgstr "<br><br>转向延迟标定已完成 {}%。"
+
+#: openpilot/selfdrive/ui/widgets/ssh_key.py
+msgid "ADD"
+msgstr "添加"
+
+#: system/ui/widgets/network.py
+msgid "APN Setting"
+msgstr "APN 设置"
+
+#: openpilot/selfdrive/ui/widgets/offroad_alerts.py
+msgid "Acknowledge Excessive Actuation"
+msgstr "确认过度作动"
+
+#: system/ui/widgets/network.py
+msgid "Advanced"
+msgstr "高级"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Aggressive"
+msgstr "激进"
+
+#: openpilot/selfdrive/ui/layouts/onboarding.py
+msgid "Agree"
+msgstr "同意"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Always-On Driver Monitoring"
+msgstr "始终开启驾驶员监测"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Are you sure you want to power off?"
+msgstr "确定要关机吗？"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Are you sure you want to reboot?"
+msgstr "确定要重启吗？"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Are you sure you want to reset calibration?"
+msgstr "确定要重置标定吗？"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "Are you sure you want to uninstall?"
+msgstr "确定要卸载吗？"
+
+#: openpilot/selfdrive/ui/layouts/onboarding.py
+#: system/ui/widgets/network.py
+msgid "Back"
+msgstr "返回"
+
+#: openpilot/selfdrive/ui/widgets/prime.py
+msgid "Become a comma prime member at connect.comma.ai"
+msgstr "前往 connect.comma.ai 成为 comma prime 会员"
+
+#: openpilot/selfdrive/ui/widgets/pairing_dialog.py
+msgid "Bookmark connect.comma.ai to your home screen to use it like an app"
+msgstr "将 connect.comma.ai 添加到主屏幕，像应用一样使用"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "CHANGE"
+msgstr "更改"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "CHECK"
+msgstr "检查"
+
+#: openpilot/selfdrive/ui/widgets/exp_mode_button.py
+msgid "CHILL MODE ON"
+msgstr "安稳模式已开启"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+#: system/ui/widgets/network.py
+msgid "CONNECT"
+msgstr "连接"
+
+#: system/ui/widgets/network.py
+msgid "CONNECTING..."
+msgstr "连接中..."
+
+#: system/ui/widgets/confirm_dialog.py
+#: system/ui/widgets/keyboard.py
+#: system/ui/widgets/network.py
+#: system/ui/widgets/option_dialog.py
+msgid "Cancel"
+msgstr "取消"
+
+#: system/ui/widgets/network.py
+msgid "Cellular Metered"
+msgstr "蜂窝计量"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Change Language"
+msgstr "更改语言"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Changing this setting will restart openpilot if the car is powered on."
+msgstr "若车辆通电，更改此设置将重启 openpilot。"
+
+#: openpilot/selfdrive/ui/widgets/pairing_dialog.py
+msgid "Click \"add new device\" and scan the QR code on the right"
+msgstr "点击“添加新设备”，扫描右侧二维码"
+
+#: openpilot/selfdrive/ui/widgets/offroad_alerts.py
+msgid "Close"
+msgstr "关闭"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "Current Version"
+msgstr "当前版本"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "DOWNLOAD"
+msgstr "下载"
+
+#: openpilot/selfdrive/ui/layouts/onboarding.py
+msgid "Decline"
+msgstr "拒绝"
+
+#: openpilot/selfdrive/ui/layouts/onboarding.py
+msgid "Decline, uninstall openpilot"
+msgstr "拒绝并卸载 openpilot"
+
+#: openpilot/selfdrive/ui/layouts/settings/settings.py
+msgid "Developer"
+msgstr "开发者"
+
+#: openpilot/selfdrive/ui/layouts/settings/settings.py
+msgid "Device"
+msgstr "设备"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Disengage on Accelerator Pedal"
+msgstr "加速踏板退出辅助驾驶"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Disengage to Power Off"
+msgstr "退出辅助驾驶后关机"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Disengage to Reboot"
+msgstr "退出辅助驾驶后重启"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Disengage to Reset Calibration"
+msgstr "退出辅助驾驶后重置标定"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Display speed in km/h instead of mph."
+msgstr "以 km/h 显示速度（非 mph）。"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Dongle ID"
+msgstr "设备 ID"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "Download"
+msgstr "下载"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Driver Camera"
+msgstr "车内摄像头"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Driving Personality"
+msgstr "驾驶风格"
+
+#: system/ui/widgets/network.py
+msgid "EDIT"
+msgstr "编辑"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "ERROR"
+msgstr "错误"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "ETH"
+msgstr "ETH"
+
+#: openpilot/selfdrive/ui/widgets/exp_mode_button.py
+msgid "EXPERIMENTAL MODE ON"
+msgstr "实验模式已开启"
+
+#: openpilot/selfdrive/ui/layouts/settings/developer.py
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Enable"
+msgstr "启用"
+
+#: openpilot/selfdrive/ui/layouts/settings/developer.py
+msgid "Enable ADB"
+msgstr "启用 ADB"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Enable Lane Departure Warnings"
+msgstr "启用车道偏离预警"
+
+#: system/ui/widgets/network.py
+msgid "Enable Roaming"
+msgstr "启用漫游"
+
+#: openpilot/selfdrive/ui/layouts/settings/developer.py
+msgid "Enable SSH"
+msgstr "启用 SSH"
+
+#: system/ui/widgets/network.py
+msgid "Enable Tethering"
+msgstr "启用网络共享"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Enable driver monitoring even when openpilot is not engaged."
+msgstr "未激活辅助驾驶时也启用驾驶员监测。"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Enable openpilot"
+msgstr "启用 openpilot"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Enable the openpilot longitudinal control (alpha) toggle to allow Experimental mode."
+msgstr "启用 openpilot 纵向控制（alpha）开关，以使用实验模式。"
+
+#: system/ui/widgets/network.py
+msgid "Enter APN"
+msgstr "输入 APN"
+
+#: system/ui/widgets/network.py
+msgid "Enter SSID"
+msgstr "输入 SSID"
+
+#: system/ui/widgets/network.py
+msgid "Enter new tethering password"
+msgstr "输入新的网络共享密码"
+
+#: system/ui/widgets/network.py
+msgid "Enter password"
+msgstr "输入密码"
+
+#: openpilot/selfdrive/ui/widgets/ssh_key.py
+msgid "Enter your GitHub username"
+msgstr "输入您的 GitHub 用户名"
+
+#: system/ui/widgets/list_view.py
+msgid "Error"
+msgstr "错误"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Experimental Mode"
+msgstr "实验模式"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Experimental mode is currently unavailable on this car since the car's stock ACC is used for longitudinal control."
+msgstr "此车型当前无法使用实验模式，因为纵向控制使用的是原厂 ACC。"
+
+#: system/ui/widgets/network.py
+msgid "FORGETTING..."
+msgstr "正在遗忘..."
+
+#: openpilot/selfdrive/ui/widgets/setup.py
+msgid "Finish Setup"
+msgstr "完成设置"
+
+#: openpilot/selfdrive/ui/layouts/settings/settings.py
+msgid "Firehose"
+msgstr "数据洪流"
+
+#: openpilot/selfdrive/ui/layouts/settings/firehose.py
+msgid "Firehose Mode"
+msgstr "Firehose 模式"
+
+#: system/ui/widgets/network.py
+msgid "Forget"
+msgstr "忘记"
+
+#: system/ui/widgets/network.py
+msgid "Forget Wi-Fi Network \"{}\"?"
+msgstr "要忘记 Wi‑Fi 网络“{}”吗？"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "GOOD"
+msgstr "良好"
+
+#: openpilot/selfdrive/ui/widgets/pairing_dialog.py
+msgid "Go to https://connect.comma.ai on your phone"
+msgstr "在手机上前往 https://connect.comma.ai"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "HIGH"
+msgstr "高"
+
+#: system/ui/widgets/network.py
+msgid "Hidden Network"
+msgstr "隐藏网络"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "INSTALL"
+msgstr "安装"
+
+#: system/ui/widgets/network.py
+msgid "IP Address"
+msgstr "IP 地址"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "Install Update"
+msgstr "安装更新"
+
+#: openpilot/selfdrive/ui/layouts/settings/developer.py
+msgid "Joystick Debug Mode"
+msgstr "摇杆调试模式"
+
+#: openpilot/selfdrive/ui/widgets/ssh_key.py
+msgid "LOADING"
+msgstr "加载中"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "LTE"
+msgstr "LTE"
+
+#: openpilot/selfdrive/ui/layouts/settings/developer.py
+msgid "Longitudinal Maneuver Mode"
+msgstr "纵向操作模式"
+
+#: openpilot/selfdrive/ui/onroad/hud_renderer.py
+msgid "MAX"
+msgstr "最大"
+
+#: openpilot/selfdrive/ui/widgets/setup.py
+msgid "Maximize your training data uploads to improve openpilot's driving models."
+msgstr "最大化上传训练数据，以改进 openpilot 的驾驶模型。"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "N/A"
+msgstr "无"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "NO"
+msgstr "否"
+
+#: openpilot/selfdrive/ui/layouts/settings/settings.py
+msgid "Network"
+msgstr "网络"
+
+#: openpilot/selfdrive/ui/widgets/ssh_key.py
+msgid "No SSH keys found for user '{}'"
+msgstr "未找到用户“{}”的 SSH 密钥"
+
+#: openpilot/selfdrive/ui/widgets/offroad_alerts.py
+msgid "No release notes available."
+msgstr "暂无发行说明。"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "OFFLINE"
+msgstr "离线"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+#: system/ui/widgets/confirm_dialog.py
+#: system/ui/widgets/html_render.py
+msgid "OK"
+msgstr "确定"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "ONLINE"
+msgstr "在线"
+
+#: openpilot/selfdrive/ui/widgets/setup.py
+msgid "Open"
+msgstr "打开"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "PAIR"
+msgstr "配对"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "PANDA"
+msgstr "PANDA"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "PREVIEW"
+msgstr "预览"
+
+#: openpilot/selfdrive/ui/widgets/prime.py
+msgid "PRIME FEATURES:"
+msgstr "PRIME 功能："
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Pair Device"
+msgstr "配对设备"
+
+#: openpilot/selfdrive/ui/widgets/setup.py
+msgid "Pair device"
+msgstr "配对设备"
+
+#: openpilot/selfdrive/ui/widgets/pairing_dialog.py
+msgid "Pair your device to your comma account"
+msgstr "将设备配对到您的 comma 账号"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+#: openpilot/selfdrive/ui/widgets/setup.py
+msgid "Pair your device with comma connect (connect.comma.ai) and claim your comma prime offer."
+msgstr "将设备与 comma connect（connect.comma.ai）配对，领取您的 comma prime 优惠。"
+
+#: openpilot/selfdrive/ui/widgets/setup.py
+msgid "Please connect to Wi-Fi to complete initial pairing"
+msgstr "请连接 Wi‑Fi 以完成初始配对"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Power Off"
+msgstr "关机"
+
+#: system/ui/widgets/network.py
+msgid "Prevent large data uploads when on a metered Wi-Fi connection"
+msgstr "在计量制 Wi‑Fi 连接时避免大量上传"
+
+#: system/ui/widgets/network.py
+msgid "Prevent large data uploads when on a metered cellular connection"
+msgstr "在计量制蜂窝网络时避免大量上传"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Preview the driver facing camera to ensure that driver monitoring has good visibility. (vehicle must be off)"
+msgstr "预览车内摄像头以确保驾驶员监测视野良好。（车辆须处于驻车模式）"
+
+#: openpilot/selfdrive/ui/widgets/pairing_dialog.py
+msgid "QR Code Error"
+msgstr "二维码错误"
+
+#: openpilot/selfdrive/ui/widgets/ssh_key.py
+msgid "REMOVE"
+msgstr "移除"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "RESET"
+msgstr "重置"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "REVIEW"
+msgstr "查看"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Reboot"
+msgstr "重启"
+
+#: openpilot/selfdrive/ui/onroad/alert_renderer.py
+msgid "Reboot Device"
+msgstr "重启设备"
+
+#: openpilot/selfdrive/ui/widgets/offroad_alerts.py
+msgid "Reboot and Update"
+msgstr "重启并更新"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Record and Upload Driver Camera"
+msgstr "录制并上传车内摄像头"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Record and Upload Microphone Audio"
+msgstr "录制并上传麦克风音频"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Record and store microphone audio while driving. The audio will be included in the dashcam video in comma connect."
+msgstr "行驶时录制并保存麦克风音频。音频将包含在 comma connect 的行车记录视频中。"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Regulatory"
+msgstr "法规"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Relaxed"
+msgstr "从容"
+
+#: openpilot/selfdrive/ui/widgets/prime.py
+msgid "Remote access"
+msgstr "远程访问"
+
+#: openpilot/selfdrive/ui/widgets/prime.py
+msgid "Remote snapshots"
+msgstr "远程快照"
+
+#: openpilot/selfdrive/ui/widgets/ssh_key.py
+msgid "Request timed out"
+msgstr "请求超时"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Reset"
+msgstr "重置"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Reset Calibration"
+msgstr "重置标定"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Review Training Guide"
+msgstr "查看训练指南"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Review the rules, features, and limitations of openpilot"
+msgstr "查看 openpilot 的规则、功能与限制"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "SELECT"
+msgstr "选择"
+
+#: openpilot/selfdrive/ui/layouts/settings/developer.py
+msgid "SSH Keys"
+msgstr "SSH 密钥"
+
+#: system/ui/widgets/network.py
+msgid "Scanning Wi-Fi networks..."
+msgstr "正在扫描 Wi‑Fi 网络…"
+
+#: system/ui/widgets/option_dialog.py
+msgid "Select"
+msgstr "选择"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "Select a branch"
+msgstr "选择分支"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Select a language"
+msgstr "选择语言"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "Serial"
+msgstr "序列号"
+
+#: openpilot/selfdrive/ui/widgets/offroad_alerts.py
+msgid "Snooze Update"
+msgstr "延后更新"
+
+#: openpilot/selfdrive/ui/layouts/settings/settings.py
+msgid "Software"
+msgstr "软件"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Standard"
+msgstr "标准"
+
+#: openpilot/selfdrive/ui/onroad/alert_renderer.py
+msgid "System Unresponsive"
+msgstr "系统无响应"
+
+#: openpilot/selfdrive/ui/onroad/alert_renderer.py
+msgid "TAKE CONTROL IMMEDIATELY"
+msgstr "请立即接管"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "TEMP"
+msgstr "温度"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "Target Branch"
+msgstr "目标分支"
+
+#: system/ui/widgets/network.py
+msgid "Tethering Password"
+msgstr "网络共享密码"
+
+#: openpilot/selfdrive/ui/layouts/settings/settings.py
+msgid "Toggles"
+msgstr "切换"
+
+#: openpilot/selfdrive/ui/layouts/settings/developer.py
+msgid "UI Debug Mode"
+msgstr "界面调试模式"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "UNINSTALL"
+msgstr "卸载"
+
+#: openpilot/selfdrive/ui/layouts/home.py
+msgid "UPDATE"
+msgstr "更新"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "Uninstall"
+msgstr "卸载"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "Unknown"
+msgstr "未知"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "Updates are only downloaded while the car is off."
+msgstr "仅在驻车模式下下载更新。"
+
+#: openpilot/selfdrive/ui/widgets/prime.py
+msgid "Upgrade Now"
+msgstr "立即升级"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Upload data from the driver facing camera and help improve the driver monitoring algorithm."
+msgstr "上传车内摄像头数据，帮助改进驾驶员监测算法。"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "Use Metric System"
+msgstr "使用公制"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "VEHICLE"
+msgstr "车辆"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "VIEW"
+msgstr "查看"
+
+#: openpilot/selfdrive/ui/onroad/alert_renderer.py
+msgid "Waiting to start"
+msgstr "等待进入行驶模式"
+
+#: openpilot/selfdrive/ui/layouts/onboarding.py
+msgid "Welcome to openpilot"
+msgstr "欢迎使用 openpilot"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "When enabled, pressing the accelerator pedal will disengage openpilot."
+msgstr "启用后，踩下加速踏板将退出辅助驾驶。"
+
+#: openpilot/selfdrive/ui/layouts/sidebar.py
+msgid "Wi-Fi"
+msgstr "Wi‑Fi"
+
+#: system/ui/widgets/network.py
+msgid "Wi-Fi Network Metered"
+msgstr "Wi‑Fi 计量网络"
+
+#: system/ui/widgets/network.py
+msgid "Wrong password"
+msgstr "密码错误"
+
+#: openpilot/selfdrive/ui/layouts/onboarding.py
+msgid "You must accept the Terms and Conditions in order to use openpilot."
+msgstr "您必须接受条款与条件才能使用 openpilot。"
+
+#: openpilot/selfdrive/ui/layouts/onboarding.py
+msgid "You must accept the Terms and Conditions to use openpilot. Read the latest terms at https://comma.ai/terms before continuing."
+msgstr "您必须接受条款与条件才能使用 openpilot。继续前请阅读 https://comma.ai/terms 上的最新条款。"
+
+#: openpilot/selfdrive/ui/onroad/driver_camera_dialog.py
+msgid "camera starting"
+msgstr "相机启动中"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "checking..."
+msgstr "检查中..."
+
+#: openpilot/selfdrive/ui/widgets/prime.py
+msgid "comma prime"
+msgstr "comma prime"
+
+#: system/ui/widgets/network.py
+msgid "default"
+msgstr "默认"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "down"
+msgstr "下"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "downloading..."
+msgstr "下载中..."
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "failed to check for update"
+msgstr "检查更新失败"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "finalizing update..."
+msgstr "正在完成更新..."
+
+#: system/ui/widgets/network.py
+msgid "for \"{}\""
+msgstr "用于“{}”"
+
+#: openpilot/selfdrive/ui/onroad/hud_renderer.py
+msgid "km/h"
+msgstr "km/h"
+
+#: system/ui/widgets/network.py
+msgid "leave blank for automatic configuration"
+msgstr "留空以自动配置"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "left"
+msgstr "左"
+
+#: system/ui/widgets/network.py
+msgid "metered"
+msgstr "计量"
+
+#: openpilot/selfdrive/ui/onroad/hud_renderer.py
+msgid "mph"
+msgstr "mph"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "never"
+msgstr "从不"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "now"
+msgstr "现在"
+
+#: openpilot/selfdrive/ui/layouts/settings/developer.py
+msgid "openpilot Longitudinal Control (Alpha)"
+msgstr "openpilot 纵向控制（Alpha）"
+
+#: openpilot/selfdrive/ui/onroad/alert_renderer.py
+msgid "openpilot Unavailable"
+msgstr "openpilot 无法使用"
+
+#: openpilot/selfdrive/ui/layouts/settings/toggles.py
+msgid "openpilot longitudinal control may come in a future update."
+msgstr "openpilot 纵向控制可能会在未来更新中提供。"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "openpilot requires the device to be mounted within 4° left or right and within 5° up or 9° down."
+msgstr "openpilot 要求设备安装在左右 4°、上 5° 或下 9° 以内。"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "right"
+msgstr "右"
+
+#: system/ui/widgets/network.py
+msgid "unmetered"
+msgstr "不限流量"
+
+#: openpilot/selfdrive/ui/layouts/settings/device.py
+msgid "up"
+msgstr "上"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "up to date, last checked never"
+msgstr "已是最新，最后检查：从未"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "up to date, last checked {}"
+msgstr "已是最新，最后检查：{}"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "update available"
+msgstr "有可用更新"
+
+#: openpilot/selfdrive/ui/layouts/home.py
+msgid "{} ALERT"
+msgid_plural "{} ALERTS"
+msgstr[0] "{} 条警报"
+msgstr[1] "{} 条警报"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "{} day ago"
+msgid_plural "{} days ago"
+msgstr[0] "{} 天前"
+msgstr[1] "{} 天前"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "{} hour ago"
+msgid_plural "{} hours ago"
+msgstr[0] "{} 小时前"
+msgstr[1] "{} 小时前"
+
+#: openpilot/selfdrive/ui/layouts/settings/software.py
+msgid "{} minute ago"
+msgid_plural "{} minutes ago"
+msgstr[0] "{} 分钟前"
+msgstr[1] "{} 分钟前"
+
+#: openpilot/selfdrive/ui/layouts/settings/firehose.py
+msgid "{} segment of your driving is in the training dataset so far."
+msgid_plural "{} segments of your driving is in the training dataset so far."
+msgstr[0] "目前已有 {} 个您的驾驶片段被纳入训练数据集。"
+msgstr[1] "目前已有 {} 个您的驾驶片段被纳入训练数据集。"
+
+#: openpilot/selfdrive/ui/widgets/prime.py
+msgid "✓ SUBSCRIBED"
+msgstr "✓ 已订阅"
+
+#: openpilot/selfdrive/ui/widgets/setup.py
+msgid "🔥 Firehose Mode 🔥"
+msgstr "🔥 Firehose 模式 🔥"
+
+
+msgid "Vehicle Model"
+msgstr "车型"
+
+msgid "[AUTO DETECT]"
+msgstr "[自动检测]"
+
+msgid "On/Off Road"
+msgstr "行驶模式/驻车模式"
+
+msgid "Go Offroad"
+msgstr "进入驻车模式"
+
+msgid "Go Onroad"
+msgstr "进入行驶模式"
+
+msgid "Force openpilot to go into onroad/offroad state.<br>(e.g. for update purpose)"
+msgstr "强制切换行驶/驻车模式。<br>（例如用于系统更新）"
+
+msgid "Vehicle Model list not found."
+msgstr "未找到车型列表。"
+
+msgid "Vehicle Model list is not a valid format."
+msgstr "车型列表格式无效。"
+
+msgid "Select a Make"
+msgstr "选择品牌"
+
+msgid "Select a Model"
+msgstr "选择车型"
+
+msgid "Are you sure you want to switch?"
+msgstr "确定要切换吗？"
+
+msgid "CONFIRM"
+msgstr "确认"
+
+msgid "Lateral Maneuver Mode"
+msgstr "横向操作模式"
+
+msgid "Show Last Errors"
+msgstr "显示最近错误"
+
+msgid "Show"
+msgstr "显示"
+
+msgid "ADB (Android Debug Bridge) allows connecting to your device over USB or over the network. See https://docs.comma.ai/how-to/connect-to-comma for more info."
+msgstr "ADB（Android 调试桥）可通过 USB 或网络连接设备。详见 https://docs.comma.ai/how-to/connect-to-comma。"
+
+msgid "Warning: This grants SSH access to all public keys in your GitHub settings. Never enter a GitHub username other than your own. A comma employee will NEVER ask you to add their GitHub username."
+msgstr "警告：这将允许你 GitHub 设置中的所有公钥通过 SSH 访问。请勿输入他人用户名。comma 员工绝不会要求你添加其 GitHub 用户名。"
+
+msgid "<b>WARNING: openpilot longitudinal control is in alpha for this car and may disable Automatic Emergency Braking (AEB).</b><br><br>On this car, openpilot defaults to the car's built-in ACC instead of openpilot's longitudinal control. Enable this to switch to openpilot longitudinal control. Enabling Experimental mode is recommended when enabling openpilot longitudinal control alpha. Changing this setting will restart openpilot if the car is powered on."
+msgstr "<b>警告：此车型的 openpilot 纵向控制仍为 Alpha，可能禁用自动紧急制动 (AEB)。</b><br><br>此车型默认使用原厂 ACC 而非 openpilot 纵向控制。启用以切换到 openpilot 纵向控制。启用 Alpha 纵向控制时建议同时开启实验模式。若车辆已通电，更改此设置将重启 openpilot。"
+
+msgid "openpilot is continuously calibrating, resetting is rarely required. Resetting calibration will restart openpilot if the car is powered on."
+msgstr "openpilot 会持续标定，通常无需重置。若车辆已通电，重置标定将重启 openpilot。"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "openpilot will disengage"
+msgstr "辅助驾驶即将退出"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Always keep hands on wheel and eyes on road"
+msgstr "请始终手扶方向盘、注视前方道路"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "BRAKE!"
+msgstr "请制动！"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Risk of Collision"
+msgstr "前向碰撞风险"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Emergency Braking: Risk of Collision"
+msgstr "自动紧急制动：前向碰撞风险"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "AEB: Risk of Collision"
+msgstr "AEB：前向碰撞风险"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Stock AEB: Risk of Collision"
+msgstr "原厂 AEB：前向碰撞风险"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Stock LKAS: Lane Departure Detected"
+msgstr "原厂 LKAS：车道偏离"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Lane Departure Detected"
+msgstr "车道偏离"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Pay Attention"
+msgstr "请注意"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Driver Distracted"
+msgstr "驾驶员分心"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "DISENGAGE IMMEDIATELY"
+msgstr "请立即退出辅助驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Touch Steering Wheel: No Face Detected"
+msgstr "请手扶方向盘：未检测到人脸"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Touch Steering Wheel"
+msgstr "请手扶方向盘"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Driver Unresponsive"
+msgstr "驾驶员无响应"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Distraction Level Too High"
+msgstr "分心程度过高"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "TAKE CONTROL"
+msgstr "请立即接管"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Take Control"
+msgstr "请立即接管"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "take control"
+msgstr "请立即接管"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Resume Driving Manually"
+msgstr "请手动继续驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Press Resume to Exit Standstill"
+msgstr "按 RES 键退出停走模式"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Press Resume to Exit Brake Hold"
+msgstr "按 RES 键退出制动保持"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Press Resume"
+msgstr "按 RES"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Press Set to Engage"
+msgstr "按 SET 键激活辅助驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Release Brake to Engage"
+msgstr "松开制动以激活辅助驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Cancel Pressed"
+msgstr "已按下取消键"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Steer Left to Start Lane Change Once Safe"
+msgstr "确认安全后向左拨杆开始变道"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Steer Right to Start Lane Change Once Safe"
+msgstr "确认安全后向右拨杆开始变道"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Car Detected in Blindspot"
+msgstr "盲区监测到车辆"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Car in Blindspot"
+msgstr "盲区有车辆"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Changing Lanes"
+msgstr "正在变道"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Confirm Lane Change"
+msgstr "确认变道"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Steer Left"
+msgstr "向左变道"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Steer Right"
+msgstr "向右变道"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Turn Exceeds Steering Limit"
+msgstr "转向超出限制"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "turn exceeds limit"
+msgstr "转向超出限制"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Slow down to engage"
+msgstr "请减速后激活辅助驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Speed Too High"
+msgstr "车速过高"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Speed too low"
+msgstr "车速过低"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Model uncertain at this speed"
+msgstr "当前车速下模型不确定"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Door Open"
+msgstr "车门未关"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Seatbelt Unlatched"
+msgstr "安全带未系"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Parking Brake Engaged"
+msgstr "电子驻车已启用"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Pedal Pressed"
+msgstr "踏板已踩下"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Steering Pressed"
+msgstr "方向盘已介入"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Gear not D"
+msgstr "未挂 D 挡"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Reverse Gear"
+msgstr "倒挡"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Reverse\nGear"
+msgstr "倒\n挡"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Adaptive Cruise Disabled"
+msgstr "ACC 已禁用"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Cruise Is Off"
+msgstr "巡航已关闭"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Cruise Fault: Restart the Car"
+msgstr "巡航故障：请重启车辆"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Cruise Fault: Restart the car to engage"
+msgstr "巡航故障：重启车辆以激活辅助驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "LKAS Fault: Restart the Car"
+msgstr "LKAS 故障：请重启车辆"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "LKAS Fault: Restart the car to engage"
+msgstr "LKAS 故障：重启车辆以激活辅助驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Invalid LKAS setting"
+msgstr "LKAS 设置无效"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Toggle stock LKAS on or off to engage"
+msgstr "切换原厂 LKAS 以激活辅助驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Switch to Traffic-Aware Cruise Control to engage"
+msgstr "切换至 TACC 以激活辅助驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Enable your car's LKAS to engage"
+msgstr "启用车辆 LKAS 以激活辅助驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Disable your car's stock LKAS to engage"
+msgstr "禁用原厂 LKAS 以激活辅助驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Enable Adaptive Cruise to Engage"
+msgstr "启用 ACC 以激活辅助驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Enable Main Switch to Engage"
+msgstr "启用主开关以激活辅助驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Calibrating"
+msgstr "标定中"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Recalibrating"
+msgstr "重新标定中"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Calibration Incomplete"
+msgstr "标定未完成"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Calibration in Progress"
+msgstr "标定进行中"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Calibration Invalid"
+msgstr "标定无效"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Calibration Invalid: Remount Device & Recalibrate"
+msgstr "标定无效：请重新安装设备并标定"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Drive to Calibrate"
+msgstr "请行驶以完成标定"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Device Remount Detected: Recalibrating"
+msgstr "检测到设备重新安装：重新标定中"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Remount Detected: Recalibrating"
+msgstr "检测到重新安装：重新标定中"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Device Fell Off Mount"
+msgstr "设备脱离安装支架"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Vehicle Sensors Calibrating"
+msgstr "车辆传感器标定中"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Vehicle Sensors Invalid"
+msgstr "车辆传感器无效"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Steering misalignment detected"
+msgstr "检测到转向不对中"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Steer ratio mismatch"
+msgstr "转向比不匹配"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Abnormal tire stiffness"
+msgstr "轮胎刚度异常"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Camera Malfunction"
+msgstr "摄像头故障"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Camera Malfunction: Reboot Your Device"
+msgstr "摄像头故障：请重启设备"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Camera Frame Rate Low"
+msgstr "摄像头帧率过低"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Camera Frame Rate Low: Reboot Your Device"
+msgstr "摄像头帧率过低：请重启设备"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Reboot your Device"
+msgstr "请重启设备"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Fan Malfunction"
+msgstr "风扇故障"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Likely Hardware Issue"
+msgstr "可能存在硬件问题"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Possible Hardware Issue"
+msgstr "可能存在硬件问题"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Check Hardware"
+msgstr "请检查硬件"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Harness Relay Malfunction"
+msgstr "线束继电器故障"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "USB Error: Reboot Your Device"
+msgstr "USB 错误：请重启设备"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Low Battery"
+msgstr "电量低"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "System Initializing"
+msgstr "系统初始化中"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "System Overheated"
+msgstr "系统过热"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "System Lagging"
+msgstr "系统延迟"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Low Memory"
+msgstr "内存不足"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Low Memory: Reboot Your Device"
+msgstr "内存不足：请重启设备"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "High CPU Usage"
+msgstr "CPU 使用率过高"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Selfdrive Process Lagging: Reboot Your Device"
+msgstr "辅助驾驶进程延迟：请重启设备"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Driving Model Lagging"
+msgstr "规划模型延迟"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Process Not Running"
+msgstr "进程未运行"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Communication Issue Between Processes"
+msgstr "进程间通信异常"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Low Communication Rate Between Processes"
+msgstr "进程间通信速率过低"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "CAN Bus Disconnected"
+msgstr "CAN 总线断开"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "CAN Bus Disconnected: Check Connections"
+msgstr "CAN 总线断开：请检查连接"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "CAN Bus Disconnected: Likely Faulty Cable"
+msgstr "CAN 总线断开：线缆可能故障"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "locationd Temporary Error"
+msgstr "locationd 临时错误"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "locationd Permanent Error"
+msgstr "locationd 永久错误"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "paramsd Temporary Error"
+msgstr "paramsd 临时错误"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "paramsd Permanent Error"
+msgstr "paramsd 永久错误"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Posenet Speed Invalid"
+msgstr "Posenet 速度无效"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Sensor Data Invalid"
+msgstr "传感器数据无效"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Controls Mismatch"
+msgstr "控制不匹配"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Excessive Actuation"
+msgstr "执行器动作过度"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Vehicle Steering Time Limit"
+msgstr "车辆转向时间限制"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Steering Assist Temporarily Unavailable"
+msgstr "转向辅助暂时不可用"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Steering Temporarily Unavailable"
+msgstr "转向暂时不可用"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Electronic Stability Control Active"
+msgstr "ESC 已激活"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Electronic Stability Control Disabled"
+msgstr "ESC 已禁用"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Dashcam Mode"
+msgstr "行车记录仪模式"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Dashcam mode"
+msgstr "行车记录仪模式"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Dashcam mode for unsupported car"
+msgstr "不支持车型的行车记录仪模式"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Car Unrecognized"
+msgstr "车辆未识别"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Security Key Not Available"
+msgstr "安全密钥不可用"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Be ready to take over at any time"
+msgstr "请随时准备接管"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "WARNING: This branch is not tested"
+msgstr "警告：此分支未经测试"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Joystick Mode"
+msgstr "摇杆模式"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Ensure road ahead is clear"
+msgstr "请确认前方道路畅通"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Bookmark Saved"
+msgstr "书签已保存"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Recording Audio Feedback"
+msgstr "正在录制音频反馈"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Out of Storage"
+msgstr "存储空间不足"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Radar Error: Restart the Car"
+msgstr "雷达错误：请重启车辆"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Radar Temporarily Unavailable"
+msgstr "雷达暂时不可用"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Unknown Vehicle Variant"
+msgstr "未知车型变体"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "openpilot Canceled"
+msgstr "openpilot 已取消"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "openpilot failed to cancel cruise"
+msgstr "openpilot 取消巡航失败"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "Drive above {} to engage"
+msgstr "提速至 {} 以上以激活辅助驾驶"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "Steer Assist Unavailable Below {}"
+msgstr "低于 {} 时转向辅助不可用"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "Drive Above {}"
+msgstr "提速至 {} 以上"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "{} second remaining. Press again to save early."
+msgstr "剩余 {} 秒。再次按下可提前保存。"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "{} seconds remaining. Press again to save early."
+msgstr "剩余 {} 秒。再次按下可提前保存。"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "{}% full"
+msgstr "已使用 {}%"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "Speed Error: {} m/s"
+msgstr "速度误差：{} m/s"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "Remount Device (Pitch: {}°, Yaw: {}°)"
+msgstr "重新安装设备（俯仰：{}°，偏航：{}°）"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "Angle offset too high (Offset: {}°)"
+msgstr "角度偏移过大（偏移：{}°）"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "Steering rack geometry may be off (Ratio: {})"
+msgstr "转向齿条几何可能异常（比率：{}）"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "Check tires, pressure, or alignment (Factor: {})"
+msgstr "请检查轮胎、胎压或四轮定位（系数：{}）"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "{} °C"
+msgstr "{} °C"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "{}% used"
+msgstr "已使用 {}%"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "{}% frames dropped"
+msgstr "丢帧 {}%"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "Gas: {}%, Steer: {}%"
+msgstr "油门：{}%，转向：{}%"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "Driving Personality: {}"
+msgstr "驾驶风格：{}"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "Calibrating: {}%"
+msgstr "标定中：{}%"
+
+#: openpilot/selfdrive/ui/lib/tr_alert.py
+msgid "Recalibrating: {}%"
+msgstr "重新标定中：{}%"
+
+#: openpilot/selfdrive/selfdrived/alerts_offroad.json
+msgid "Device temperature too high. System cooling down before starting. Current internal component temperature: %1"
+msgstr "设备温度过高，正在降温，完成后方可进入行驶模式。当前内部组件温度：%1"
+
+#: openpilot/selfdrive/selfdrived/alerts_offroad.json
+msgid "Immediately connect to the internet to check for updates. If you do not connect to the internet, openpilot won't engage in %1"
+msgstr "请立即连接互联网检查更新。若不连接，%1 后将无法激活辅助驾驶"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Connect to internet to check for updates. openpilot won't automatically start until it connects to internet to check for updates."
+msgstr "请连接互联网检查更新。连接前无法自动进入行驶模式。"
+
+#: openpilot/selfdrive/selfdrived/alerts_offroad.json
+msgid "Unable to download updates\n%1"
+msgstr "无法下载更新\n%1"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Taking camera snapshots. System won't start until finished."
+msgstr "正在拍摄摄像头快照，完成后方可进入行驶模式。"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "An update to your device's operating system is downloading in the background. You will be prompted to update when it's ready to install."
+msgstr "设备操作系统更新正在后台下载。准备就绪时将提示您安装。"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Failed to register with comma.ai backend. It will not connect or upload to comma.ai servers, and receives no support from comma.ai. If this is a device purchased at comma.ai/shop, open a ticket at https://comma.ai/support."
+msgstr "无法向 comma.ai 后端注册。设备不会连接或上传至 comma.ai 服务器，也不获得 comma.ai 支持。若设备购自 comma.ai/shop，请至 https://comma.ai/support 提交工单。"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "openpilot was unable to identify your car. Your car is either unsupported or its ECUs are not recognized. Please submit a pull request to add the firmware versions to the proper vehicle. Need help? Join discord.comma.ai."
+msgstr "openpilot 无法识别您的车辆。车辆可能不受支持，或 ECU 未被识别。请提交 PR 将固件版本添加到对应车型。需要帮助？加入 discord.comma.ai。"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "openpilot detected a change in the device's mounting position. Ensure the device is fully seated in the mount and the mount is firmly secured to the windshield."
+msgstr "openpilot 检测到设备安装位置发生变化。请确保设备完全装入支架，且支架牢固固定在前挡风玻璃上。"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Poor visibility detected for driver monitoring. Ensure the device has a clear view of the driver. This can be checked in the device settings. Extreme lighting conditions and/or unconventional mounting positions may also trigger this alert."
+msgstr "驾驶员监测视野不佳。请确保设备能清晰看到驾驶员，可在设备设置中检查。极端光照或不常规安装位置也可能触发此告警。"
+
+#: openpilot/selfdrive/selfdrived/alerts_offroad.json
+msgid "Excessive %1 actuation detected on your last drive. Please contact support at https://comma.ai/support and share your device's Dongle ID for troubleshooting."
+msgstr "检测到上次驾驶中 %1 执行器动作过度。请联系 https://comma.ai/support 并提供设备 Dongle ID 以便排查。"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Reverse"
+msgstr "倒车"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Disable Logging"
+msgstr "禁用日志记录"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Disable Updates"
+msgstr "禁用更新"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Disable logging service"
+msgstr "禁用日志记录服务"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Disable update service"
+msgstr "禁用系统更新服务"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Use the openpilot system for adaptive cruise control and lane keep driver assistance. Your attention is required at all times to use this feature."
+msgstr "使用 openpilot 的自适应巡航与车道保持辅助。使用此功能时您必须始终关注路况。"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Standard is recommended. In aggressive mode, openpilot will follow lead cars closer and be more aggressive with the gas and brake. In relaxed mode openpilot will stay further away from lead cars. On supported cars, you can cycle through these personalities with your steering wheel distance button."
+msgstr "建议使用标准模式。激进模式下 openpilot 会更近跟车、加减速更积极；从容模式下会与前车保持更远距离。部分车型可通过方向盘距离键切换驾驶风格。"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "Receive alerts to steer back into the lane when your vehicle drifts over a detected lane line without a turn signal activated while driving over 31 mph (50 km/h)."
+msgstr "车速超过 31 mph（50 km/h）且未打转向灯时，若车辆偏离检测到的车道线，将收到回到车道的预警。"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "An alpha version of openpilot longitudinal control can be tested, along with Experimental mode, on non-release branches."
+msgstr "在非正式发布分支上可测试 openpilot 纵向控制 Alpha 版及实验模式。"
+
+#: openpilot/selfdrive/selfdrived/events.py
+msgid "openpilot defaults to driving in chill mode. Experimental mode enables alpha-level features that aren't ready for chill mode. Experimental features are listed below:<br><h4>End-to-End Longitudinal Control</h4><br>Let the driving model control the gas and brakes. openpilot will drive as it thinks a human would, including stopping for red lights and stop signs. Since the driving model decides the speed to drive, the set speed will only act as an upper bound. This is an alpha quality feature; mistakes should be expected.<br><h4>New Driving Visualization</h4><br>The driving visualization will transition to the road-facing wide-angle camera at low speeds to better show some turns. The Experimental mode logo will also be shown in the top right corner."
+msgstr "openpilot 默认以安稳模式行驶。实验模式启用尚未纳入安稳模式的 Alpha 功能，如下：<br><h4>端到端纵向控制</h4><br>由规划模型控制油门与制动。openpilot 将按类似人类的方式驾驶，包括红灯与停车标志前停车。由于车速由模型决定，设定速度仅作为上限。此为 Alpha 功能，可能出现失误。<br><h4>新驾驶可视化</h4><br>低速时驾驶可视化将切换至前路广角摄像头，以便更好显示弯道。右上角也将显示实验模式标识。"
