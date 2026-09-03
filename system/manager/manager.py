@@ -6,6 +6,10 @@ import sys
 import time
 import traceback
 
+from openpilot.system.manager.boot_timing import mark as boot_mark, log_path as boot_timing_path
+
+boot_mark("manager.script_start")
+
 from cereal import log
 import cereal.messaging as messaging
 import openpilot.system.sentry as sentry
@@ -38,13 +42,20 @@ sys.modules["panda"] = _mod
 
 # Re-export everything
 globals().update({k: v for k, v in _mod.__dict__.items() if not k.startswith("_")})
-import time
+
+boot_mark("manager.imports_done")
+
+_BOOT_KEY_PROCS = ("ui", "pandad", "camerad", "card", "modeld", "selfdrived", "controlsd", "plannerd", "radard")
+_BOOT_ENGAGEABLE_TIMEOUT_S = 120.0
 
 
 def manager_init() -> None:
+  boot_mark("manager_init.start")
   save_bootlog()
+  boot_mark("manager_init.save_bootlog")
 
   build_metadata = get_build_metadata()
+  boot_mark("manager_init.build_metadata")
 
   params = Params()
   params.clear_all(ParamKeyFlag.CLEAR_ON_MANAGER_START)
@@ -62,7 +73,10 @@ def manager_init() -> None:
     default_value = params.get_default_value(k)
     if default_value is not None and params.get(k) is None:
       params.put(k, default_value, block=True)
+  boot_mark("manager_init.params_defaults")
+
   params.put("dp_dev_model_list", VehicleModelCollector().get_json())
+  boot_mark("manager_init.vehicle_model_list")
   apply_from_params(params)
 
   # Create folders needed for msgq
@@ -86,6 +100,7 @@ def manager_init() -> None:
 
   # set dongle id
   reg_res = register(show_spinner=True)
+  boot_mark("manager_init.register")
   if reg_res:
     dongle_id = reg_res
   else:
@@ -109,9 +124,8 @@ def manager_init() -> None:
                        dirty=build_metadata.openpilot.is_dirty,
                        device=HARDWARE.get_device_type())
 
-  # preimport all processes
-  for p in managed_processes.values():
-    p.prepare()
+  boot_mark("manager_init.done")
+  cloudlog.info(f"boot_timing log: {boot_timing_path()}")
 
 
 def manager_cleanup() -> None:
@@ -130,6 +144,7 @@ def manager_thread() -> None:
   cloudlog.bind(daemon="manager")
   cloudlog.info("manager start")
   cloudlog.info({"environ": os.environ})
+  boot_mark("manager_thread.start")
 
   params = Params()
 
@@ -140,11 +155,12 @@ def manager_thread() -> None:
     ignore.append("pandad")
   ignore += [x for x in os.getenv("BLOCK", "").split(",") if len(x) > 0]
 
-  sm = messaging.SubMaster(['deviceState', 'carParams', 'pandaStates'], poll='deviceState')
+  sm = messaging.SubMaster(['deviceState', 'carParams', 'pandaStates', 'selfdriveState'], poll='deviceState')
   pm = messaging.PubMaster(['managerState'])
 
   write_onroad_params(False, params)
   ensure_running(managed_processes.values(), False, params=params, CP=sm['carParams'], not_run=ignore)
+  boot_mark("manager_thread.first_ensure_running")
 
   started_prev = False
 
@@ -157,6 +173,7 @@ def manager_thread() -> None:
     'encoderd': dp_dev_delay_loggerd
   }
   ignition_prev = False
+  started_mono: float | None = None
 
   while True:
     sm.update(1000)
@@ -165,12 +182,16 @@ def manager_thread() -> None:
 
     if started and not started_prev:
       params.clear_all(ParamKeyFlag.CLEAR_ON_ONROAD_TRANSITION)
+      started_mono = time.monotonic()
+      boot_mark("runtime.started", once=True)
     elif not started and started_prev:
       params.clear_all(ParamKeyFlag.CLEAR_ON_OFFROAD_TRANSITION)
+      started_mono = None
 
     ignition = any(ps.ignitionLine or ps.ignitionCan for ps in sm['pandaStates'] if ps.pandaType != log.PandaState.PandaType.unknown)
     if ignition and not ignition_prev:
       params.clear_all(ParamKeyFlag.CLEAR_ON_IGNITION_ON)
+      boot_mark("runtime.ignition", once=True)
 
     # update onroad params, which drives pandad's safety setter thread
     if started != started_prev:
@@ -193,6 +214,16 @@ def manager_thread() -> None:
 
     ensure_running(managed_processes.values(), started, params=params, CP=sm['carParams'], not_run=list(set(ignore) | set(dp_ignore)))
 
+    for name in _BOOT_KEY_PROCS:
+      p = managed_processes.get(name)
+      if p is not None and p.proc is not None and p.proc.is_alive():
+        boot_mark(f"proc.{name}.alive", once=True)
+
+    if sm.seen['selfdriveState'] and sm['selfdriveState'].engageable:
+      boot_mark("runtime.engageable", once=True)
+    elif started_mono is not None and (time.monotonic() - started_mono) > _BOOT_ENGAGEABLE_TIMEOUT_S:
+      boot_mark("runtime.engageable_timeout", once=True)
+
     running = ' '.join("{}{}\u001b[0m".format("\u001b[32m" if p.proc.is_alive() else "\u001b[31m", p.name)
                        for p in managed_processes.values() if p.proc)
     print(running)
@@ -202,6 +233,7 @@ def manager_thread() -> None:
     msg = messaging.new_message('managerState', valid=True)
     msg.managerState.processes = [p.get_process_state_msg() for p in managed_processes.values()]
     pm.send('managerState', msg)
+    boot_mark("runtime.first_manager_state", once=True)
 
     # kick AGNOS power monitoring watchdog
     try:

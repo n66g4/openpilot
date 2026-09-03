@@ -4,6 +4,47 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 source "$DIR/launch_env.sh"
 
+# Boot timing: /proc/uptime timeline shared with manager.py
+export BOOT_TIMING="${BOOT_TIMING:-1}"
+if [ -f /AGNOS ]; then
+  BOOT_TIMING_PATH="${BOOT_TIMING_PATH:-/data/boot_timing.log}"
+  BOOT_TIMING_VERBOSE="${BOOT_TIMING_VERBOSE:-0}"
+else
+  BOOT_TIMING_PATH="${BOOT_TIMING_PATH:-/tmp/boot_timing.log}"
+  BOOT_TIMING_VERBOSE="${BOOT_TIMING_VERBOSE:-1}"
+fi
+export BOOT_TIMING_PATH BOOT_TIMING_VERBOSE
+
+boot_mark() {
+  case "${BOOT_TIMING}" in 0|false|no|off|OFF) return 0 ;; esac
+  local event="$1"
+  local extra="${2:-}"
+  local up
+  up=$(awk '{printf "%.3f", $1}' /proc/uptime 2>/dev/null || echo "0.000")
+  if [ -n "$extra" ]; then
+    echo -e "${up}\t${event}\t${extra}" >> "$BOOT_TIMING_PATH" 2>/dev/null || true
+  else
+    echo -e "${up}\t${event}" >> "$BOOT_TIMING_PATH" 2>/dev/null || true
+  fi
+  if [ "${BOOT_TIMING_VERBOSE}" = "1" ]; then
+    if [ -n "$extra" ]; then
+      echo "boot_timing: ${up}	${event}	${extra}"
+    else
+      echo "boot_timing: ${up}	${event}"
+    fi
+  fi
+}
+
+# Write a single-line value to /persist (best-effort, non-fatal on failure).
+persist_write() {
+  local file="$1"
+  local value="$2"
+  if sudo mount -o remount,rw /persist 2>/dev/null; then
+    echo "$value" | sudo tee "$file" >/dev/null 2>&1
+    sudo mount -o remount,ro /persist 2>/dev/null
+  fi
+}
+
 function agnos_init {
   # TODO: move this to agnos
   sudo rm -f /data/etc/NetworkManager/system-connections/*.nmmeta
@@ -19,12 +60,16 @@ function agnos_init {
 
   # Check if AGNOS update is required
   if [ $(< /VERSION) != "$AGNOS_VERSION" ]; then
+    boot_mark "launch.agnos_update.start"
     AGNOS_PY="$DIR/system/hardware/tici/agnos.py"
     MANIFEST="$DIR/system/hardware/tici/agnos.json"
     if $AGNOS_PY --verify $MANIFEST; then
       sudo reboot
     fi
     $DIR/system/hardware/tici/updater $AGNOS_PY $MANIFEST
+    boot_mark "launch.agnos_update.done"
+  else
+    boot_mark "launch.agnos_skip_update"
   fi
 }
 
@@ -43,12 +88,13 @@ set_tici_hw() {
   # --- fast path: trust a valid (F4/H7) cached value, no panda query or sleep ---
   cached=$(cat "$cache" 2>/dev/null)
   case "$cached" in
-    F4|H7) mcu="$cached"; echo "panda MCU $mcu [cached]" ;;
+    F4|H7) mcu="$cached"; echo "panda MCU $mcu [cached]"; boot_mark "launch.mcu.cached" "$mcu" ;;
   esac
 
   # --- slow path: detect, requiring M consecutive identical reads to reject a
   #     transient misread while the panda enumerates, then persist for next boot ---
   if [ -z "$mcu" ]; then
+    boot_mark "launch.mcu_detect.start"
     echo "Querying panda MCU type..."
     for attempt in $(seq 1 "$attempts"); do
       # wait long while the panda is still coming up, short between confirmations
@@ -90,17 +136,23 @@ set_tici_hw() {
       echo "$mcu" | sudo tee "$cache" >/dev/null 2>&1
       sudo mount -o remount,ro /persist 2>/dev/null
     fi
+    boot_mark "launch.mcu_detect.done" "$mcu"
   fi
 
   # --- apply: DOS (F4) also mounts the NVMe; TRES (H7) does not ---
   if [ "$mcu" = "F4" ]; then
     echo "TICI (DOS) detected"
+    boot_mark "launch.mount_nvme.start"
     mount_nvme
+    boot_mark "launch.mount_nvme.done"
     export TICI_DOS=1
-    set_aux_panda              # DOS uses pandad_tici, which supports a 2nd (aux) USB panda
+    boot_mark "launch.set_aux_panda.start"
+    set_aux_panda
+    boot_mark "launch.set_aux_panda.done"
   else
     echo "TICI (TRES) detected"
     export TICI_TRES=1
+    boot_mark "launch.tres.skip_nvme_aux"
   fi
 }
 
@@ -109,36 +161,98 @@ set_tici_hw() {
 # DOS (pandad_tici) supports a 2nd USB panda, so this runs for F4 only, and only
 # after set_tici_hw has fingerprinted the internal panda alone. Keep host mode
 # only if a 2nd panda actually shows up; otherwise revert to "none" so the port
-# stays usable as a USB device (PC connect) on units with no aux panda. Aux
-# presence is dynamic (plug/unplug), so it is probed every boot, not cached.
+# stays usable as a USB device (PC connect) on units with no aux panda.
+# Cache last result in /persist. When cached "none", skip the USB mode switch
+# entirely (saves time and avoids disturbing the internal panda). When we do
+# switch host/none, allow USB to settle before launch continues.
 set_aux_panda() {
   local mode="/sys/devices/platform/soc/a600000.ssusb/mode"
+  local cache="/persist/dp_dev_aux_panda"
+  local cached="" loops=6 sleep_s=0.5
+
   [ -e "$mode" ] || return 0
+
+  cached=$(cat "$cache" 2>/dev/null)
+  case "$cached" in
+    none)
+      boot_mark "launch.aux_panda.cached_none"
+      return 0
+      ;;
+    present)
+      boot_mark "launch.aux_panda.cached_present"
+      loops=4
+      sleep_s=0.3
+      ;;
+  esac
 
   echo "Checking for aux panda (switching USB-C port to host mode)..."
   echo host | sudo tee "$mode" >/dev/null 2>&1
-  for _ in $(seq 1 6); do          # ~3s budget; aux enumerated in ~1-2s in testing
-    sleep 0.5
+  for _ in $(seq 1 "$loops"); do
+    sleep "$sleep_s"
     if [ "$(lsusb 2>/dev/null | grep -c 'comma.ai panda')" -ge 2 ]; then
       echo "aux panda detected (USB host mode kept)"
+      boot_mark "launch.aux_panda.found"
+      persist_write "$cache" "present"
       return 0
     fi
   done
 
   echo "no aux panda found; reverting USB-C port to device mode"
   echo none | sudo tee "$mode" >/dev/null 2>&1
+  boot_mark "launch.aux_panda.none"
+  persist_write "$cache" "none"
+  # Let internal panda/USB stack stabilize after the mode switch.
+  sleep 2
+  boot_mark "launch.aux_panda.settle"
+}
+
+nvme_has_controller() {
+  [ -e /dev/nvme0 ] || [ -d /sys/class/nvme/nvme0 ] 2>/dev/null
 }
 
 mount_nvme() {
-  for i in $(seq 1 10); do
+  local cache="/persist/dp_dev_nvme_state"
+  local cached="" wait_loops=0 max_wait=5
+
+  cached=$(cat "$cache" 2>/dev/null)
+  case "$cached" in
+    absent)
+      boot_mark "launch.nvme.cached_absent"
+      if [ -b /dev/nvme0n1p1 ]; then
+        boot_mark "launch.nvme.cache_miss_installed"
+        cached=""
+      else
+        boot_mark "launch.nvme.absent"
+        return 0
+      fi
+      ;;
+    present)
+      boot_mark "launch.nvme.cached_present"
+      max_wait=5
+      ;;
+  esac
+
+  if [ -z "$cached" ] && ! nvme_has_controller; then
+    boot_mark "launch.nvme.no_controller"
+    persist_write "$cache" "absent"
+    boot_mark "launch.nvme.absent"
+    return 0
+  fi
+
+  for i in $(seq 1 "$max_wait"); do
+    wait_loops=$i
     [ -b /dev/nvme0n1p1 ] && break
     sleep 1
   done
+  boot_mark "launch.nvme.wait_loops" "$wait_loops"
 
-  # Returns 0 (success) so the boot process continues without errors
   if [ ! -b /dev/nvme0n1p1 ]; then
+    boot_mark "launch.nvme.absent"
+    persist_write "$cache" "absent"
     return 0
   fi
+
+  persist_write "$cache" "present"
 
   # We assume /data/media/0/realdata exists per defaults
   if ! mountpoint -q /data/media/0/realdata; then
@@ -146,6 +260,7 @@ mount_nvme() {
   fi
 
   if mountpoint -q /data/media/0/realdata; then
+    boot_mark "launch.nvme.mounted"
     OWNER="$(stat -c '%U' /data/media/0/realdata)"
     GROUP="$(stat -c '%G' /data/media/0/realdata)"
     PERM="$(stat -c '%a' /data/media/0/realdata)"
@@ -183,7 +298,34 @@ set_model_fingerprint() {
   fi
 }
 
+# Internal panda app needs a few seconds after boot; starting manager too early
+# (after removing NVMe/aux waits) can yield transient CAN faults (accFaulted).
+wait_internal_panda_ready() {
+  boot_mark "launch.panda_wait.start"
+  python3 - <<'PY'
+import time
+from panda_tici import Panda
+
+deadline = time.monotonic() + 6.0
+while time.monotonic() < deadline:
+  try:
+    serials = Panda.list()
+    if len(serials) == 1:
+      with Panda(serials[0]) as p:
+        if not p.bootstub:
+          break
+  except Exception:
+    pass
+  time.sleep(0.5)
+PY
+  boot_mark "launch.panda_wait.done"
+}
+
 function launch {
+  # fresh timeline for this boot/launch
+  : > "$BOOT_TIMING_PATH" 2>/dev/null || true
+  boot_mark "launch.start"
+
   # Remove orphaned git lock if it exists on boot
   [ -f "$DIR/.git/index.lock" ] && rm -f $DIR/.git/index.lock
 
@@ -220,6 +362,7 @@ function launch {
       fi
     fi
   fi
+  boot_mark "launch.overlay_check"
 
   # handle pythonpath
   ln -sfn $(pwd) /data/pythonpath
@@ -227,10 +370,15 @@ function launch {
 
   # hardware specific init
   if [ -f /AGNOS ]; then
+    boot_mark "launch.hw_init.start"
     set_tici_hw
+    boot_mark "launch.set_tici_hw"
     set_lite_hw
+    boot_mark "launch.set_lite_hw"
     agnos_init
+    boot_mark "launch.agnos_init"
     set_model_fingerprint
+    boot_mark "launch.hw_init.done"
   fi
 
   # write tmux scrollback to a file
@@ -239,8 +387,16 @@ function launch {
   # start manager
   cd system/manager
   if [ ! -f $DIR/prebuilt ]; then
+    boot_mark "launch.build.start"
     ./build.py
+    boot_mark "launch.build.done"
+  else
+    boot_mark "launch.prebuilt_skip_build"
   fi
+  if [ -f /AGNOS ] && [ -n "$TICI_HW" ]; then
+    wait_internal_panda_ready
+  fi
+  boot_mark "launch.manager_exec"
   ./manager.py
 
   # if broken, keep on screen error

@@ -84,6 +84,11 @@ def main() -> None:
       count += 1
       cloudlog.event("pandad.flash_and_connect", count=count)
 
+      # TODO: remove this in the next AGNOS
+      # wait until USB is up before counting missing pandas
+      if time.monotonic() < 35.:
+        no_internal_panda_count = 0
+
       # Handle missing internal panda
       if no_internal_panda_count > 0:
         if no_internal_panda_count == 3:
